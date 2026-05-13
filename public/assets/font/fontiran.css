@@ -1,0 +1,32 @@
+/**
+*
+*	Name:			Pofak Fonts
+*	Version:			1.0
+*	Author:			Moslem Ebrahimi
+*	Website:			http://fontiran.com
+*	Copyright:		Commercial/Proprietary Software
+--------------------------------------------------------------------------------------
+Pofak fonts are considered a proprietary software. To gain information about the laws regarding the use of these fonts, please visit www.fontiran.com
+--------------------------------------------------------------------------------------
+
+*
+**/
+
+
+@font-face {
+	font-family: Pofak;
+	font-style: normal;
+	font-weight: bold;
+	src: url('woff/Pofak-Bold.woff') format('woff'),
+	url('woff2/Pofak-Bold.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: Pofak;
+	font-style: normal;
+	font-weight: normal;
+	src: url('woff/Pofak-Regular.woff') format('woff'),
+	url('woff2/Pofak-Regular.woff2') format('woff2');
+}
+
+

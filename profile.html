@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>حساب کاربری | کتابچی</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              coffee: "#7c4a2d",
+              "coffee-dark": "#3c2418",
+              cream: "#fff8ed",
+              paper: "#f7ead8",
+              caramel: "#c47a3b",
+              sage: "#56705a",
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav
+        class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8"
+      >
+        <a href="index.html" class="flex items-center gap-3">
+          <span class="brand-mark"><i class="ti ti-books text-2xl"></i></span>
+          <span
+            ><strong class="block text-xl text-coffee-dark">کتابچی</strong
+            ><small class="text-coffee/70">بازار کتاب دست‌دوم</small></span
+          >
+        </a>
+        <div class="hidden items-center gap-7 text-sm md:flex">
+          <a class="nav-link" href="index.html">خانه</a
+          ><a class="nav-link" href="shop.html">فروشگاه</a
+          ><a class="nav-link" href="exchange.html">معاوضه</a
+          ><a class="nav-link" href="sell.html">ثبت کتاب</a
+          ><a class="nav-link active" href="profile.html">حساب کاربری</a
+          ><a class="nav-link" href="admin.html">مدیریت</a>
+        </div>
+        <div class="hidden items-center gap-3 md:flex">
+          <a href="login.html" class="btn-soft px-5 py-3">ورود</a>
+          <a href="sell.html" class="btn-primary px-5 py-3">ثبت آگهی</a>
+        </div>
+        <button
+          data-menu-button
+          class="btn-soft grid h-12 w-12 place-items-center md:hidden"
+          aria-label="باز کردن منو"
+        >
+          <i class="ti ti-menu-2 text-2xl"></i>
+        </button>
+      </nav>
+      <div
+        data-mobile-menu
+        class="mobile-menu mx-4 mb-4 rounded-3xl bg-cream p-3 shadow-xl md:hidden"
+      >
+        <a
+          class="block rounded-2xl px-4 py-3 font-bold text-coffee-dark/80 hover:bg-white/60"
+          href="index.html"
+          >خانه</a
+        ><a
+          class="block rounded-2xl px-4 py-3 font-bold text-coffee-dark/80 hover:bg-white/60"
+          href="shop.html"
+          >فروشگاه</a
+        ><a
+          class="block rounded-2xl px-4 py-3 font-bold text-coffee-dark/80 hover:bg-white/60"
+          href="exchange.html"
+          >معاوضه</a
+        ><a
+          class="block rounded-2xl px-4 py-3 font-bold text-coffee-dark/80 hover:bg-white/60"
+          href="sell.html"
+          >ثبت کتاب</a
+        ><a
+          class="block rounded-2xl px-4 py-3 font-bold text-coffee-dark/80 hover:bg-white/60"
+          href="profile.html"
+          >حساب کاربری</a
+        ><a
+          class="block rounded-2xl px-4 py-3 font-bold text-coffee-dark/80 hover:bg-white/60"
+          href="admin.html"
+          >مدیریت</a
+        ><a class="btn-primary mt-2 w-full px-5 py-3" href="sell.html"
+          >ثبت آگهی رایگان</a
+        >
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-4 py-10 lg:px-8">
+      <section class="reveal glass-card rounded-[2rem] p-6 md:p-8">
+        <div
+          class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between"
+        >
+          <div class="flex items-center gap-4">
+            <div
+              class="grid h-20 w-20 place-items-center rounded-3xl bg-coffee text-3xl font-black text-cream"
+            >
+              ن
+            </div>
+            <div>
+              <h1 class="text-3xl font-black text-coffee-dark">نیما رضایی</h1>
+              <p class="mt-2 text-coffee/65">
+                فروشنده تاییدشده · تهران · عضو از ۱۴۰۳
+              </p>
+            </div>
+          </div>
+          <a href="sell.html" class="btn-primary px-6 py-3">ثبت کتاب جدید</a>
+        </div>
+      </section>
+      <section class="mt-6 grid gap-4 md:grid-cols-4">
+        <div class="reveal paper-card rounded-3xl p-5">
+          <i class="ti ti-books text-3xl text-coffee"></i
+          ><strong class="mt-4 block text-2xl">۱۴</strong
+          ><span class="text-sm text-coffee/60">کتاب ثبت‌شده</span>
+        </div>
+        <div class="reveal paper-card rounded-3xl p-5">
+          <i class="ti ti-shopping-bag-check text-3xl text-coffee"></i
+          ><strong class="mt-4 block text-2xl">۸</strong
+          ><span class="text-sm text-coffee/60">فروش موفق</span>
+        </div>
+        <div class="reveal paper-card rounded-3xl p-5">
+          <i class="ti ti-repeat text-3xl text-coffee"></i
+          ><strong class="mt-4 block text-2xl">۵</strong
+          ><span class="text-sm text-coffee/60">معاوضه موفق</span>
+        </div>
+        <div class="reveal paper-card rounded-3xl p-5">
+          <i class="ti ti-star-filled text-3xl text-coffee"></i
+          ><strong class="mt-4 block text-2xl">۴.۹</strong
+          ><span class="text-sm text-coffee/60">امتیاز فروشنده</span>
+        </div>
+      </section>
+      <section class="mt-8 grid gap-8 lg:grid-cols-[1fr_360px]">
+        <div class="reveal form-card rounded-[2rem] p-6">
+          <div class="mb-5 flex items-center justify-between">
+            <h2 class="text-xl font-black">آگهی‌های من</h2>
+            <a href="admin.html" class="text-sm font-black text-coffee"
+              >پنل مدیریت</a
+            >
+          </div>
+          <div class="space-y-4">
+            <div class="flex items-center gap-4 rounded-3xl bg-white/60 p-4">
+              <div
+                class="book-cover h-24 w-20 rounded-2xl"
+                style="--cover-a: #7c4a2d; --cover-b: #d89a54"
+              ></div>
+              <div class="flex-1">
+                <h3 class="font-black">ملت عشق</h3>
+                <p class="text-sm text-coffee/60">فعال · ۱۶۵٬۰۰۰ تومان</p>
+              </div>
+              <button class="btn-soft px-4 py-2 text-sm">ویرایش</button>
+            </div>
+            <div class="flex items-center gap-4 rounded-3xl bg-white/60 p-4">
+              <div
+                class="book-cover h-24 w-20 rounded-2xl"
+                style="--cover-a: #31415e; --cover-b: #bb7d45"
+              ></div>
+              <div class="flex-1">
+                <h3 class="font-black">سمفونی مردگان</h3>
+                <p class="text-sm text-coffee/60">
+                  در انتظار تایید · قابل معاوضه
+                </p>
+              </div>
+              <button class="btn-soft px-4 py-2 text-sm">ویرایش</button>
+            </div>
+          </div>
+        </div>
+        <aside class="reveal paper-card rounded-[2rem] p-6">
+          <h2 class="text-xl font-black">پیام‌های اخیر</h2>
+          <div class="mt-5 space-y-4">
+            <div class="rounded-3xl bg-white/60 p-4">
+              <b>سارا احمدی</b>
+              <p class="mt-2 text-sm leading-7 text-coffee/65">
+                برای خرید ملت عشق پیام داده است.
+              </p>
+            </div>
+            <div class="rounded-3xl bg-white/60 p-4">
+              <b>آرش کریمی</b>
+              <p class="mt-2 text-sm leading-7 text-coffee/65">
+                پیشنهاد معاوضه برای سمفونی مردگان ثبت کرد.
+              </p>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div
+        class="mx-auto grid max-w-7xl gap-8 px-4 py-10 md:grid-cols-[1.2fr_.8fr_.8fr] lg:px-8"
+      >
+        <div>
+          <div class="flex items-center gap-3">
+            <span class="brand-mark bg-cream text-coffee"
+              ><i class="ti ti-books text-2xl"></i></span
+            ><strong class="text-2xl">کتابچی</strong>
+          </div>
+          <p class="mt-4 max-w-xl leading-8 text-cream/75">
+            کتابچی محلی گرم برای خرید، فروش و معاوضه کتاب‌های تمیز و خواندنی
+            است؛ از رمان محبوب تا کتاب دانشگاهی کمیاب.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-black">دسترسی سریع</h3>
+          <div class="mt-4 grid gap-3 text-cream/75">
+            <a href="shop.html">فروشگاه</a
+            ><a href="exchange.html">معاوضه کتاب</a
+            ><a href="sell.html">ثبت کتاب</a
+            ><a href="profile.html">حساب کاربری</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-black">پشتیبانی</h3>
+          <div class="mt-4 grid gap-3 text-cream/75">
+            <span>۰۲۱-۴۴۲۲۳۰۱۰</span><span>تهران، خیابان انقلاب، پلاک ۲۴</span
+            ><span>هر روز ۹ تا ۲۰</span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="border-t border-cream/10 py-4 text-center text-sm text-cream/60"
+      >
+        © ۱۴۰۵ کتابچی — خرید و فروش کتاب‌های دست‌دوم
+      </div>
+    </footer>
+    <script src="assets/app.js"></script>
+  </body>
+</html>
