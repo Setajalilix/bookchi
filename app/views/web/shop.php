@@ -25,14 +25,14 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
     />
-    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="stylesheet" href="../../../public/assets/styles.css" />
   </head>
   <body>
     <header class="site-header">
       <nav
         class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8"
       >
-        <a href="index.html" class="flex items-center gap-3">
+        <a href="index.php" class="flex items-center gap-3">
           <span class="brand-mark"><i class="ti ti-books text-2xl"></i></span>
           <span
             ><strong class="block text-xl text-coffee-dark">کتابچی</strong
@@ -40,16 +40,16 @@
           >
         </a>
         <div class="hidden items-center gap-7 text-sm md:flex">
-          <a class="nav-link" href="index.html">خانه</a
-          ><a class="nav-link active" href="shop.html">فروشگاه</a
-          ><a class="nav-link" href="exchange.html">معاوضه</a
-          ><a class="nav-link" href="sell.html">ثبت کتاب</a
-          ><a class="nav-link" href="profile.html">حساب کاربری</a
-          ><a class="nav-link" href="admin.html">مدیریت</a>
+          <a class="nav-link" href="index.php">خانه</a
+          ><a class="nav-link active" href="shop.php">فروشگاه</a
+          ><a class="nav-link" href="exchange.php">معاوضه</a
+          ><a class="nav-link" href="sell.php">ثبت کتاب</a
+          ><a class="nav-link" href="profile.php">حساب کاربری</a
+          ><a class="nav-link" href="../../../public/admin.php">مدیریت</a>
         </div>
         <div class="hidden items-center gap-3 md:flex">
-          <a href="login.html" class="btn-soft px-5 py-3">ورود</a>
-          <a href="sell.html" class="btn-primary px-5 py-3">ثبت آگهی</a>
+          <a href="login.php" class="btn-soft px-5 py-3">ورود</a>
+          <a href="sell.php" class="btn-primary px-5 py-3">ثبت آگهی</a>
         </div>
         <button
           data-menu-button
@@ -65,29 +65,29 @@
       >
         <a
           class="block rounded-2xl px-4 py-3 font-bold text-coffee-dark/80 hover:bg-white/60"
-          href="index.html"
+          href="index.php"
           >خانه</a
         ><a
           class="block rounded-2xl px-4 py-3 font-bold text-coffee-dark/80 hover:bg-white/60"
-          href="shop.html"
+          href="shop.php"
           >فروشگاه</a
         ><a
           class="block rounded-2xl px-4 py-3 font-bold text-coffee-dark/80 hover:bg-white/60"
-          href="exchange.html"
+          href="exchange.php"
           >معاوضه</a
         ><a
           class="block rounded-2xl px-4 py-3 font-bold text-coffee-dark/80 hover:bg-white/60"
-          href="sell.html"
+          href="sell.php"
           >ثبت کتاب</a
         ><a
           class="block rounded-2xl px-4 py-3 font-bold text-coffee-dark/80 hover:bg-white/60"
-          href="profile.html"
+          href="profile.php"
           >حساب کاربری</a
         ><a
           class="block rounded-2xl px-4 py-3 font-bold text-coffee-dark/80 hover:bg-white/60"
-          href="admin.html"
+          href="../../../public/admin.php"
           >مدیریت</a
-        ><a class="btn-primary mt-2 w-full px-5 py-3" href="sell.html"
+        ><a class="btn-primary mt-2 w-full px-5 py-3" href="sell.php"
           >ثبت آگهی رایگان</a
         >
       </div>
@@ -165,7 +165,7 @@
           <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             <article class="reveal paper-card rounded-[2rem] p-4">
               <a
-                href="book.html"
+                href="book.php"
                 class="book-cover block h-56 rounded-3xl p-5 text-cream"
                 style="--cover-a: #7c4a2d; --cover-b: #d89a54"
                 ><i class="ti ti-flower text-3xl"></i>
@@ -193,7 +193,7 @@
             </article>
             <article class="reveal paper-card rounded-[2rem] p-4">
               <a
-                href="book.html"
+                href="book.php"
                 class="book-cover block h-56 rounded-3xl p-5 text-cream"
                 style="--cover-a: #31415e; --cover-b: #bb7d45"
                 ><i class="ti ti-moon-stars text-3xl"></i>
@@ -221,7 +221,7 @@
             </article>
             <article class="reveal paper-card rounded-[2rem] p-4">
               <a
-                href="book.html"
+                href="book.php"
                 class="book-cover block h-56 rounded-3xl p-5 text-cream"
                 style="--cover-a: #5c332f; --cover-b: #ca6b48"
                 ><i class="ti ti-bulb text-3xl"></i>
@@ -250,7 +250,7 @@
 
             <article class="reveal paper-card rounded-[2rem] p-4">
               <a
-                href="book.html"
+                href="book.php"
                 class="book-cover block h-56 rounded-3xl p-5 text-cream"
                 style="--cover-a: #305f72; --cover-b: #d89a54"
                 ><i class="ti ti-flower text-3xl"></i>
@@ -278,7 +278,7 @@
             </article>
             <article class="reveal paper-card rounded-[2rem] p-4">
               <a
-                href="book.html"
+                href="book.php"
                 class="book-cover block h-56 rounded-3xl p-5 text-cream"
                 style="--cover-a: #31415e; --cover-b: #bb7d45"
                 ><i class="ti ti-moon-stars text-3xl"></i>
@@ -306,7 +306,7 @@
             </article>
             <article class="reveal paper-card rounded-[2rem] p-4">
               <a
-                href="book.html"
+                href="book.php"
                 class="book-cover block h-56 rounded-3xl p-5 text-cream"
                 style="--cover-a: #5c332f; --cover-b: #ca6b48"
                 ><i class="ti ti-bulb text-3xl"></i>
@@ -354,10 +354,10 @@
         <div>
           <h3 class="font-black">دسترسی سریع</h3>
           <div class="mt-4 grid gap-3 text-cream/75">
-            <a href="shop.html">فروشگاه</a
-            ><a href="exchange.html">معاوضه کتاب</a
-            ><a href="sell.html">ثبت کتاب</a
-            ><a href="profile.html">حساب کاربری</a>
+            <a href="shop.php">فروشگاه</a
+            ><a href="exchange.php">معاوضه کتاب</a
+            ><a href="sell.php">ثبت کتاب</a
+            ><a href="profile.php">حساب کاربری</a>
           </div>
         </div>
         <div>
@@ -374,6 +374,6 @@
         © ۱۴۰۵ کتابچی — خرید و فروش کتاب‌های دست‌دوم
       </div>
     </footer>
-    <script src="assets/app.js"></script>
+    <script src="../../../public/assets/app.js"></script>
   </body>
 </html>

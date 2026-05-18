@@ -32,7 +32,7 @@
       <nav
         class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8"
       >
-        <a href="index.html" class="flex items-center gap-3">
+        <a href="index.php" class="flex items-center gap-3">
           <span class="brand-mark"><i class="ti ti-books text-2xl"></i></span>
           <span
             ><strong class="block text-xl text-coffee-dark">کتابچی</strong
@@ -40,16 +40,16 @@
           >
         </a>
         <div class="hidden items-center gap-7 text-sm md:flex">
-          <a class="nav-link" href="index.html">خانه</a
-          ><a class="nav-link" href="shop.html">فروشگاه</a
-          ><a class="nav-link" href="exchange.html">معاوضه</a
-          ><a class="nav-link active" href="sell.html">ثبت کتاب</a
-          ><a class="nav-link" href="profile.html">حساب کاربری</a
-          ><a class="nav-link" href="admin.html">مدیریت</a>
+          <a class="nav-link" href="index.php">خانه</a
+          ><a class="nav-link" href="shop.php">فروشگاه</a
+          ><a class="nav-link" href="exchange.php">معاوضه</a
+          ><a class="nav-link active" href="sell.php">ثبت کتاب</a
+          ><a class="nav-link" href="profile.php">حساب کاربری</a
+          ><a class="nav-link" href="admin.php">مدیریت</a>
         </div>
         <div class="hidden items-center gap-3 md:flex">
-          <a href="login.html" class="btn-soft px-5 py-3">ورود</a>
-          <a href="sell.html" class="btn-primary px-5 py-3">ثبت آگهی</a>
+          <a href="login.php" class="btn-soft px-5 py-3">ورود</a>
+          <a href="sell.php" class="btn-primary px-5 py-3">ثبت آگهی</a>
         </div>
         <button
           data-menu-button
@@ -65,29 +65,29 @@
       >
         <a
           class="block rounded-2xl px-4 py-3 font-bold text-coffee-dark/80 hover:bg-white/60"
-          href="index.html"
+          href="index.php"
           >خانه</a
         ><a
           class="block rounded-2xl px-4 py-3 font-bold text-coffee-dark/80 hover:bg-white/60"
-          href="shop.html"
+          href="shop.php"
           >فروشگاه</a
         ><a
           class="block rounded-2xl px-4 py-3 font-bold text-coffee-dark/80 hover:bg-white/60"
-          href="exchange.html"
+          href="exchange.php"
           >معاوضه</a
         ><a
           class="block rounded-2xl px-4 py-3 font-bold text-coffee-dark/80 hover:bg-white/60"
-          href="sell.html"
+          href="sell.php"
           >ثبت کتاب</a
         ><a
           class="block rounded-2xl px-4 py-3 font-bold text-coffee-dark/80 hover:bg-white/60"
-          href="profile.html"
+          href="profile.php"
           >حساب کاربری</a
         ><a
           class="block rounded-2xl px-4 py-3 font-bold text-coffee-dark/80 hover:bg-white/60"
-          href="admin.html"
+          href="admin.php"
           >مدیریت</a
-        ><a class="btn-primary mt-2 w-full px-5 py-3" href="sell.html"
+        ><a class="btn-primary mt-2 w-full px-5 py-3" href="sell.php"
           >ثبت آگهی رایگان</a
         >
       </div>
@@ -192,10 +192,10 @@
         <div>
           <h3 class="font-black">دسترسی سریع</h3>
           <div class="mt-4 grid gap-3 text-cream/75">
-            <a href="shop.html">فروشگاه</a
-            ><a href="exchange.html">معاوضه کتاب</a
-            ><a href="sell.html">ثبت کتاب</a
-            ><a href="profile.html">حساب کاربری</a>
+            <a href="shop.php">فروشگاه</a
+            ><a href="exchange.php">معاوضه کتاب</a
+            ><a href="sell.php">ثبت کتاب</a
+            ><a href="profile.php">حساب کاربری</a>
           </div>
         </div>
         <div>
