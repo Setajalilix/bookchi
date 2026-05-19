@@ -18,6 +18,7 @@ class Router
 
     public function dispatch($uri, $method)
     {
+
         $uri = parse_url($uri, PHP_URL_PATH);
 
         $action = $this->routes[$method][$uri] ?? null;

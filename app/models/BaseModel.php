@@ -3,7 +3,6 @@
 namespace models;
 
 use PDO;
-use PDOException;
 
 abstract class BaseModel
 {
@@ -14,7 +13,7 @@ abstract class BaseModel
         static $pdo = null;
 
         if ($pdo === null) {
-            $config = require '../../config/database.php';
+           $config = require_once __DIR__ . '/../../config/database.php';
 
             $dsn = "mysql:host={$config['host']};dbname={$config['dbname']};charset={$config['charset']}";
 

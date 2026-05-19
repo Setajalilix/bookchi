@@ -2,6 +2,7 @@
 
 
 namespace models;
+require_once __DIR__ . '/../models/BaseModel.php';
 
 
 class Book extends BaseModel

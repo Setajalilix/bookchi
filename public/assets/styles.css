@@ -319,8 +319,8 @@ a {
 }
 
 .reveal {
-  opacity: 0;
-  transform: translateY(18px);
+  opacity: 1;
+  transform: none;
   transition:
     opacity 0.65s ease,
     transform 0.65s ease;

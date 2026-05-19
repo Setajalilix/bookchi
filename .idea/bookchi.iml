@@ -6,5 +6,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="tabler-icons" level="application" />
+    <orderEntry type="library" name="base" level="application" />
+    <orderEntry type="library" name="tailwind" level="application" />
   </component>
 </module>
