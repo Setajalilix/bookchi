@@ -6,5 +6,10 @@ namespace models;
 
 class Book extends BaseModel
 {
-    protected static $table = 'books';
+    protected static string $table = 'books';
+
+    public static function category($categoryId)
+    {
+        return Category::find($categoryId);
+    }
 }
