@@ -3,18 +3,14 @@
 namespace controllers;
 
 use models\Book;
-use models\Category;
 
-require_once __DIR__ . '/../models/Category.php';
 require_once __DIR__ . '/../models/Book.php';
+
 class DashboardController
 {
-    public function index()
+    public function index(): void
     {
-        $books = Book::all();
-
-        require __DIR__ . '/../views/web/dashboard.php';
-
+        $books = Book::latest(20);
+        require __DIR__ . '/../views/web/dashboard/index.php';
     }
-
 }

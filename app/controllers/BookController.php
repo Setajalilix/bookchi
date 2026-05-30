@@ -7,21 +7,38 @@ use models\Category;
 
 require_once __DIR__ . '/../models/Category.php';
 require_once __DIR__ . '/../models/Book.php';
+
 class BookController
 {
-    public function index()
+    public function index(): void
     {
-        $products = Book::all();
-
-
+        $books = Book::all();
+        require __DIR__ . '/../views/web/books/index.php';
     }
 
-    public function create()
+    public function show(): void
+    {
+        $id = (int)($_GET['id'] ?? 0);
+        if ($id < 1) {
+            die('404 Not Found');
+        }
+
+        $book = Book::find($id);
+
+        if (!$book) {
+            die('404 Not Found');
+        }
+
+        require __DIR__ . '/../views/web/books/show.php';
+    }
+
+    public function create(): void
     {
         $categories = Category::all();
         require __DIR__ . '/../views/web/books/create.php';
     }
-    public function store()
+
+    public function store(): void
     {
         $data = $_POST;
         $uploadDir = __DIR__ . '/../../public/uploads/books/';
@@ -31,14 +48,13 @@ class BookController
         }
 
         $file = $_FILES['cover'];
-
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $fileName = uniqid() . '.' . $ext;
-
         $targetPath = $uploadDir . $fileName;
 
         move_uploaded_file($file['tmp_name'], $targetPath);
         $imagePath = '/uploads/books/' . $fileName;
+
         $created = Book::create([
             'title' => $data['title'],
             'author' => $data['author'],
@@ -49,11 +65,11 @@ class BookController
             'city' => $data['city'],
             'description' => $data['description'],
             'sell_type' => $data['sell_type'],
-            'created_at' => date('Y-m-d H:m:s'),
+            'created_at' => date('Y-m-d H:i:s'),
         ]);
 
         if ($created) {
-            header("Location: /dashboard");
+            header('Location: /dashboard');
             exit;
         }
     }
