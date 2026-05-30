@@ -11,8 +11,7 @@ class BookController
 {
     public function index()
     {
-        $products = Book::all();
-
+        $books = Book::all();
 
     }
 
@@ -21,13 +20,14 @@ class BookController
         $categories = Category::all();
         require __DIR__ . '/../views/web/books/create.php';
     }
+
     public function store()
     {
         $data = $_POST;
         $uploadDir = __DIR__ . '/../../public/uploads/books/';
 
         if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0777, true);
+            mkdir($uploadDir);
         }
 
         $file = $_FILES['cover'];

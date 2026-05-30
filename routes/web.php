@@ -4,6 +4,7 @@ use core\Router;
 
 
 /** @var Router $router */
+$router->get('/', 'HomeController@index');
 $router->get('/dashboard', 'DashboardController@index');
 
 $router->post('/books', 'BookController@store');

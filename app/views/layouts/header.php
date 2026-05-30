@@ -40,7 +40,7 @@ require_once __DIR__ . '/../../../config/app.php';
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
 
         <!-- Logo -->
-        <a href="/home.php" class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-3">
             <span class="brand-mark">
                 <i class="ti ti-books text-2xl"></i>
             </span>
@@ -53,7 +53,7 @@ require_once __DIR__ . '/../../../config/app.php';
         <!-- Menu -->
         <div class="hidden items-center gap-7 text-sm md:flex">
 
-            <a class="nav-link <?= $activePage === 'home' ? 'active' : '' ?>" href="/home.php">خانه</a>
+            <a class="nav-link <?= $activePage === 'home' ? 'active' : '' ?>" href="/">خانه</a>
 
             <a class="nav-link <?= $activePage === 'shop' ? 'active' : '' ?>" href="/shop.php">فروشگاه</a>
 
@@ -63,7 +63,7 @@ require_once __DIR__ . '/../../../config/app.php';
 
             <a class="nav-link <?= $activePage === 'profile' ? 'active' : '' ?>" href="/profile.php">حساب کاربری</a>
 
-            <a class="nav-link <?= $activePage === 'admin' ? 'active' : '' ?>" href="/admin.php">مدیریت</a>
+            <a class="nav-link <?= $activePage === 'admin' ? 'active' : '' ?>" href="/dashboard">مدیریت</a>
 
         </div>
 
@@ -85,12 +85,12 @@ require_once __DIR__ . '/../../../config/app.php';
     <!-- Mobile -->
     <div data-mobile-menu class="mobile-menu mx-4 mb-4 rounded-3xl bg-cream p-3 shadow-xl md:hidden">
 
-        <a href="/home.php" class="block px-4 py-3">خانه</a>
+        <a href="/" class="block px-4 py-3">خانه</a>
         <a href="/shop.php" class="block px-4 py-3">فروشگاه</a>
         <a href="/exchange.php" class="block px-4 py-3">معاوضه</a>
         <a href="/books/create" class="block px-4 py-3">ثبت کتاب</a>
         <a href="/profile.php" class="block px-4 py-3">حساب کاربری</a>
-        <a href="/admin.php" class="block px-4 py-3">مدیریت</a>
+        <a href="/dashboard" class="block px-4 py-3">مدیریت</a>
 
         <a href="/books/create" class="btn-primary mt-2 w-full px-5 py-3">
             ثبت آگهی رایگان
