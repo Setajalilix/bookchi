@@ -9,7 +9,7 @@
         >کتابت را بفروش یا معاوضه کن</span
         >
         <h1 class="mt-2 text-4xl font-black text-coffee-dark">
-            ثبت کتاب توسط کاربر
+            ویرایش کتاب توسط کاربر
         </h1>
         <p class="mt-4 max-w-3xl leading-8 text-coffee/70">
             اطلاعات کتابت را کامل وارد کن تا خریدارها با خیال راحت وضعیت، قیمت و
@@ -17,39 +17,66 @@
         </p>
     </section>
     <section class="mt-8 grid gap-8 lg:grid-cols-[1fr_360px]">
-        <form class="reveal form-card rounded-[2rem] p-6" method="post" enctype="multipart/form-data" action="/books">
+        <form class="reveal form-card rounded-[2rem] p-6" method="post" enctype="multipart/form-data" action="/books/update"">
             <div class="grid gap-5 md:grid-cols-2">
+                <input
+                        type="hidden"
+                        name="id"
+                        value="<?= $book['id'] ?>"
+                >
                 <label class="field-label"
-                >نام کتاب<input name="title"
-                                id="bookTitle"
-                                class="input-field mt-2"
-                                placeholder="مثلاً ملت عشق"/></label
+                >نام کتاب
+                    <input
+                            name="title"
+                            id="bookTitle"
+                            class="input-field mt-2"
+                            value="<?= $book['title'] ?>"
+                    ></label
                 >
                 <label class="field-label"
                 >نویسنده
-                    <input class="input-field mt-2" placeholder="نام نویسنده" name="author"/></label
+                    <input class="input-field mt-2" value="<?= $book['author']?>" placeholder="نام نویسنده" name="author"/></label
                 ><label class="field-label"
-                >دسته‌بندی<select class="select-field mt-2" name="category_id">
-                        <option>انتخاب کنید...</option>
-                        <?php foreach ($categories as $category) { ?>
-                            <option value="<?= $category['id'] ?>"><?= $category['title'] ?></option>
-                        <?php } ?>
+                >دسته‌بندی<select
+                            class="select-field mt-2"
+                            name="category_id"
+                    >
+                        <?php foreach ($categories as $category): ?>
+                            <option
+                                    value="<?= $category['id'] ?>"
+                                    <?= $book['category_id'] == $category['id'] ? 'selected' : '' ?>
+                            >
+                                <?= $category['title'] ?>
+                            </option>
+                        <?php endforeach; ?>
                     </select></label
                 ><label class="field-label"
                 >وضعیت کتاب
                     <select class="select-field mt-2" name="status">
-                        <option value="new">در حد نو</option>
-                        <option value="clean">تمیز</option>
-                        <option value="have_lines">دارای خط‌کشی</option>
+                        <option value="new"
+                                <?= $book['status'] === 'new' ? 'selected' : '' ?>>
+                            در حد نو
+                        </option>
+
+                        <option value="clean"
+                                <?= $book['status'] === 'clean' ? 'selected' : '' ?>>
+                            تمیز
+                        </option>
+
+                        <option value="have_lines"
+                                <?= $book['status'] === 'have_lines' ? 'selected' : '' ?>>
+                            دارای خط کشی
+                        </option>
                     </select></label
                 ><label class="field-label"
                 >قیمت پیشنهادی<input
                             required
                             name="price"
+                            value="<?=$book['price']?>"
                             class="input-field mt-2"
                             placeholder="۱۶۵٬۰۰۰ تومان"/></label
                 ><label class="field-label"
-                >شهر<input class="input-field mt-2" name="city" placeholder="تهران"
+                >شهر<input class="input-field mt-2" name="city" placeholder="تهران" value="<?=$book['city']?>"
                     /></label>
             </div>
             <label class="field-label mt-5"
@@ -59,19 +86,29 @@
                         name="description"
                         class="textarea-field mt-2"
                         placeholder="وضعیت جلد، صفحات، روش ارسال و نکته‌های مهم را بنویسید"
-                ></textarea>
+                ><?=$book['description']?></textarea>
             </label>
             <div class="mt-5 grid gap-3 sm:grid-cols-2">
                 <label
                         class="flex items-center gap-3 rounded-2xl bg-white/60 p-4 font-bold"
-                ><input type="radio" name="sell_type" value="cash" checked/> فروش نقدی</label
+                ><input
+                            type="radio"
+                            name="sell_type"
+                            value="cash"
+                            <?= $book['sell_type'] === 'cash' ? 'checked' : '' ?>
+                    > فروش نقدی</label
                 ><label
                         class="flex items-center gap-3 rounded-2xl bg-white/60 p-4 font-bold"
-                ><input type="radio" name="sell_type" value="exchange"/> امکان معاوضه</label
+                ><input
+                            type="radio"
+                            name="sell_type"
+                            value="exchange"
+                            <?= $book['sell_type'] === 'exchange' ? 'checked' : '' ?>
+                    > امکان معاوضه</label
                 >
             </div>
             <button class="btn-primary mt-6 w-full px-6 py-4" type="submit">
-                ثبت کتاب
+                ویرایش کتاب
             </button>
         </form>
         <aside class="reveal paper-card rounded-[2rem] p-6">
@@ -79,11 +116,14 @@
             <div
                     class="book-cover mt-5 h-72 rounded-3xl p-6 text-cream"
                     id="previewCover"
-                    style="--cover-a: #7c4a2d; --cover-b: #d89a54"
-            >
+                    style="
+                            background-image:url('<?= $book['cover'] ?>');
+                            background-size:cover;
+                            background-position:center;
+                            "            >
             </div>
             <h3 id="previewTitle" class="mt-4 text-2xl font-black">
-                کتاب شما
+                <?= $book['title'] ?>
             </h3>
             <p class="mt-5 leading-8 text-coffee/70">
                 عکس واضح، قیمت منصفانه و توضیح دقیق باعث می‌شود آگهی سریع‌تر دیده

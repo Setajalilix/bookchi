@@ -28,7 +28,6 @@ require_once __DIR__ . '/../../../config/app.php';
         };
     </script>
 
-    <!-- assets (فقط URL، نه filesystem) -->
     <link rel="stylesheet" href="/assets/styles.css"/>
     <link rel="stylesheet" href="/assets/tlw.css"/>
     <link rel="stylesheet" href="/assets/tabler-icons/tabler-icons.min.css"/>
@@ -50,7 +49,6 @@ require_once __DIR__ . '/../../../config/app.php';
             </span>
         </a>
 
-        <!-- Menu -->
         <div class="hidden items-center gap-7 text-sm md:flex">
 
             <a class="nav-link <?= $activePage === 'home' ? 'active' : '' ?>" href="/home">خانه</a>
@@ -67,7 +65,6 @@ require_once __DIR__ . '/../../../config/app.php';
 
         </div>
 
-        <!-- Buttons -->
         <div class="hidden items-center gap-3 md:flex">
 
             <a href="/login" class="btn-soft px-5 py-3">ورود</a>
@@ -82,7 +79,6 @@ require_once __DIR__ . '/../../../config/app.php';
 
     </nav>
 
-    <!-- Mobile -->
     <div data-mobile-menu class="mobile-menu mx-4 mb-4 rounded-3xl bg-cream p-3 shadow-xl md:hidden">
 
         <a href="/home" class="block px-4 py-3">خانه</a>

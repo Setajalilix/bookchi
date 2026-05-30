@@ -15,3 +15,5 @@ $router->post('/books', 'BookController@store');
 $router->get('/books', 'BookController@index');
 $router->get('/books/create', 'BookController@create');
 $router->get('/books/show', 'BookController@show');
+$router->get('/books/edit', 'BookController@edit');
+$router->post('/books/update', 'BookController@update');

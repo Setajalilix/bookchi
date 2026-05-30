@@ -16,10 +16,10 @@
         <div>
             <h3 class="font-black">دسترسی سریع</h3>
             <div class="mt-4 grid gap-3 text-cream/75">
-                <a href="shop.php">فروشگاه</a
-                ><a href="exchange.php">معاوضه کتاب</a
-                ><a href="sell.php">ثبت کتاب</a
-                ><a href="profile.php">حساب کاربری</a>
+                <a href="/shop">فروشگاه</a
+                ><a href="/exchange">معاوضه کتاب</a
+                ><a href="/sel">ثبت کتاب</a
+                ><a href="/profile">حساب کاربری</a>
             </div>
         </div>
         <div>

@@ -6,5 +6,5 @@ namespace models;
 
 class User extends BaseModel
 {
-    protected static $table = 'users';
+    protected static string $table = 'users';
 }

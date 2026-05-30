@@ -1,6 +1,7 @@
 <?php $activePage = 'shop'; ?>
-<?php include __DIR__ . '/../../layouts/header.php'; ?>
-<main class="mx-auto max-w-7xl px-4 py-10 lg:px-8">
+<?php require_once __DIR__ . '/../../../../config/app.php'; ?>
+<?php include LAYOUT_PATH . "/header.php";
+?><main class="mx-auto max-w-7xl px-4 py-10 lg:px-8">
 <h1 class="text-3xl font-black mb-6">فروشگاه کتاب</h1>
 <div class="grid gap-4 md:grid-cols-3">
 <?php foreach ($books as $book): ?>
