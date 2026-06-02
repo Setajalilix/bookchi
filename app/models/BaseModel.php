@@ -13,7 +13,7 @@ abstract class BaseModel
         static $pdo = null;
 
         if ($pdo === null) {
-           $config = require_once __DIR__ . '/../../config/database.php';
+            $config = require_once __DIR__ . '/../../config/database.php';
 
             $dsn = "mysql:host={$config['host']};dbname={$config['dbname']};";
 
@@ -22,7 +22,7 @@ abstract class BaseModel
                 $config['username'],
                 $config['password']
             );
-             $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+            $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
         }
 
@@ -121,6 +121,16 @@ abstract class BaseModel
             'value' => $value
         ]);
 
+        return $query->fetchAll();
+    }
+
+    public static function latest(int $limit = 10)
+    {
+        $pdo = static::db();
+        $query = $pdo->query(
+            "SELECT * FROM " . static::$table .
+            "  LIMIT " . $limit
+        );
         return $query->fetchAll();
     }
 }

@@ -51,7 +51,7 @@ require_once __DIR__ . '/../../../config/app.php';
 
         <div class="hidden items-center gap-7 text-sm md:flex">
 
-            <a class="nav-link <?= $activePage === 'home' ? 'active' : '' ?>" href="/home">خانه</a>
+            <a class="nav-link <?= $activePage === 'home' ? 'active' : '' ?>" href="/">خانه</a>
 
             <a class="nav-link <?= $activePage === 'shop' ? 'active' : '' ?>" href="/books">فروشگاه</a>
 
@@ -81,7 +81,7 @@ require_once __DIR__ . '/../../../config/app.php';
 
     <div data-mobile-menu class="mobile-menu mx-4 mb-4 rounded-3xl bg-cream p-3 shadow-xl md:hidden">
 
-        <a href="/home" class="block px-4 py-3">خانه</a>
+        <a href="/" class="block px-4 py-3">خانه</a>
         <a href="/books" class="block px-4 py-3">فروشگاه</a>
         <a href="/exchange" class="block px-4 py-3">معاوضه</a>
         <a href="/books/create" class="block px-4 py-3">ثبت کتاب</a>

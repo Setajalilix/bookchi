@@ -41,8 +41,9 @@
             <div class="grid grid-cols-2 gap-4">
                 <div
                         class="book-cover floaty h-72 rounded-3xl p-5 text-cream"
-                        style="--cover-a: #6f3f27; --cover-b: #c47a3b"
-                >
+                        style="--cover-a: #6f3f27; --cover-b: #c47a3b;
+                        background-image:url('<?= $popularBook['cover'] ?>');
+                ">
                     <i class="ti ti-leaf text-4xl"></i>
                     <h3 class="mt-36 text-2xl font-black">کتاب محبوب هفته</h3>
                 </div>
@@ -60,10 +61,10 @@
             <div class="mt-5 rounded-3xl bg-white/55 p-5">
                 <div class="flex items-center justify-between">
                     <div>
-                        <h3 class="font-black">ملت عشق</h3>
-                        <p class="text-sm text-coffee/60">الیف شافاک · تهران</p>
+                        <h3 class="font-black"><?= $popularBook['title'] ?></h3>
+                        <p class="text-sm text-coffee/60"><?= $popularBook['author'] . ' . ' . $popularBook['city']?></p>
                     </div>
-                    <strong class="text-coffee">۱۶۵٬۰۰۰ تومان</strong>
+                    <strong class="text-coffee"><?= number_format($popularBook['price'], 0) ?></strong>
                 </div>
             </div>
         </div>
@@ -78,122 +79,83 @@
                     انتخاب‌های خواندنی امروز
                 </h2>
             </div>
-            <a href="shop.php" class="btn-soft px-5 py-3">مشاهده همه</a>
         </div>
         <div class="grid gap-6 md:grid-cols-3">
-            <article class="reveal paper-card rounded-[2rem] p-4">
-                <a
-                        href="book.php"
-                        class="book-cover block h-56 rounded-3xl p-5 text-cream"
-                        style="--cover-a: #7c4a2d; --cover-b: #d89a54"
-                ><i class="ti ti-flower text-3xl"></i>
-                    <h3 class="mt-24 text-xl font-black">ملت عشق</h3>
-                    <p class="mt-1 text-sm text-cream/75">الیف شافاک</p></a
-                >
-                <div class="mt-4">
-                    <div class="flex items-start justify-between gap-3">
-                        <div>
-                            <h3 class="font-black">ملت عشق</h3>
-                            <p class="text-sm text-coffee/60">تهران · در حد نو</p>
+            <?php foreach ($books as $book):
+                $status = '';
+                $sell_type = $book['sell_type'] === 'cash' ? 'نقدی' : 'قابل تعویض';
+                switch ($book['status']) {
+                    case 'new':
+                        $status = 'در حد نو';
+                        break;
+                    case 'clean':
+                        $status = 'تمیز';
+                        break;
+                    case 'have_lines':
+                        $status = 'دارای خط کشی';
+                        break;
+
+                }
+                ?>
+                <article class="reveal paper-card rounded-[2rem] p-4">
+                    <a href="/books/show?id=<?= (int)$book['id'] ?>" class="font-black">
+                        <div
+                                class="book-cover h-56 rounded-3xl p-6 text-cream"
+                                style="
+                                        background-image:url('<?= $book['cover'] ?>');
+                                        background-size:cover;
+                                        background-position:center;
+                                        ">
                         </div>
-                        <button
-                                data-favorite
-                                class="grid h-10 w-10 place-items-center rounded-full bg-white text-coffee"
-                        >
-                            <i class="ti ti-heart"></i>
-                        </button>
-                    </div>
-                    <div class="mt-4 flex items-center justify-between">
-                        <strong class="text-coffee">۱۶۵٬۰۰۰ تومان</strong
-                        ><span class="badge badge-amber">قابل معاوضه</span>
-                    </div>
-                </div>
-            </article>
-            <article class="reveal paper-card rounded-[2rem] p-4">
-                <a
-                        href="book.php"
-                        class="book-cover block h-56 rounded-3xl p-5 text-cream"
-                        style="--cover-a: #31415e; --cover-b: #bb7d45"
-                ><i class="ti ti-moon-stars text-3xl"></i>
-                    <h3 class="mt-24 text-xl font-black">سمفونی مردگان</h3>
-                    <p class="mt-1 text-sm text-cream/75">عباس معروفی</p></a
-                >
-                <div class="mt-4">
-                    <div class="flex items-start justify-between gap-3">
-                        <div>
-                            <h3 class="font-black">سمفونی مردگان</h3>
-                            <p class="text-sm text-coffee/60">تبریز · تمیز</p>
+                        <div class="flex justify-between mt-5">
+                            <h3 class=" text-xl font-black"><?= $book['title'] ?></h3>
+                            <p class=" text-sm text-cream/75"><?= $book['author'] ?></p>
                         </div>
-                        <button
-                                data-favorite
-                                class="grid h-10 w-10 place-items-center rounded-full bg-white text-coffee"
-                        >
-                            <i class="ti ti-heart"></i>
-                        </button>
-                    </div>
-                    <div class="mt-4 flex items-center justify-between">
-                        <strong class="text-coffee">۱۸۰٬۰۰۰ تومان</strong
-                        ><span class="badge badge-green">موجود</span>
-                    </div>
-                </div>
-            </article>
-            <article class="reveal paper-card rounded-[2rem] p-4">
-                <a
-                        href="book.php"
-                        class="book-cover block h-56 rounded-3xl p-5 text-cream"
-                        style="--cover-a: #5c332f; --cover-b: #ca6b48"
-                ><i class="ti ti-bulb text-3xl"></i>
-                    <h3 class="mt-24 text-xl font-black">عادت‌های اتمی</h3>
-                    <p class="mt-1 text-sm text-cream/75">جیمز کلیر</p></a
-                >
-                <div class="mt-4">
-                    <div class="flex items-start justify-between gap-3">
-                        <div>
-                            <h3 class="font-black">عادت‌های اتمی</h3>
-                            <p class="text-sm text-coffee/60">کرج · بسیار تمیز</p>
+                        <div class="flex items-start justify-between gap-3">
+                            <p class="text-sm text-coffee/60 mt-5"><?= $book['city'] . ' | ' . $status ?>
+                            </p>
+                            <button
+                                    data-favorite
+                                    class="grid h-10 w-10 place-items-center rounded-full bg-white text-coffee"
+                            >
+                                <i class="ti ti-heart"></i>
+                            </button>
                         </div>
-                        <button
-                                data-favorite
-                                class="grid h-10 w-10 place-items-center rounded-full bg-white text-coffee"
-                        >
-                            <i class="ti ti-heart"></i>
-                        </button>
-                    </div>
-                    <div class="mt-4 flex items-center justify-between">
-                        <strong class="text-coffee">۱۴۰٬۰۰۰ تومان</strong
-                        ><span class="badge badge-sage">پرفروش</span>
-                    </div>
-                </div>
-            </article>
+                        <div class="mt-4 flex items-center justify-between">
+                            <strong class="text-coffee"><?= number_format($book['price'], 0) ?></strong
+                            ><span class="badge badge-amber"><?= $sell_type ?></span>
+                        </div>
+
+
+                    </a>
+
+                </article>
+            <?php endforeach; ?>
         </div>
     </section>
     <section class="mx-auto max-w-7xl px-4 py-12 lg:px-8">
         <div class="grid gap-5 md:grid-cols-4">
-            <a class="reveal paper-card rounded-3xl p-6" href="shop.php"
-            ><i class="ti ti-planet text-4xl text-coffee"></i>
-                <h3 class="mt-5 font-black">رمان و ادبیات</h3>
-                <p class="mt-2 text-sm leading-7 text-coffee/70">
-                    از کلاسیک تا معاصر
-                </p></a
-            ><a class="reveal paper-card rounded-3xl p-6" href="shop.php"
-            ><i class="ti ti-school text-4xl text-coffee"></i>
-                <h3 class="mt-5 font-black">دانشگاهی</h3>
-                <p class="mt-2 text-sm leading-7 text-coffee/70">
-                    کتاب‌های درسی اقتصادی
-                </p></a
-            ><a class="reveal paper-card rounded-3xl p-6" href="shop.php"
-            ><i class="ti ti-brain text-4xl text-coffee"></i>
-                <h3 class="mt-5 font-black">روانشناسی</h3>
-                <p class="mt-2 text-sm leading-7 text-coffee/70">
-                    رشد فردی و مهارت زندگی
-                </p></a
-            ><a class="reveal paper-card rounded-3xl p-6" href="shop.php"
-            ><i class="ti ti-baby-carriage text-4xl text-coffee"></i>
-                <h3 class="mt-5 font-black">کودک و نوجوان</h3>
-                <p class="mt-2 text-sm leading-7 text-coffee/70">
-                    داستان‌های سالم و تمیز
-                </p></a
-            >
+            <?php
+            $icons = [
+                    'ti-book-2',
+                    'ti-school',
+                    'ti-brain',
+                    'ti-heart',
+                    'ti-brand-4chan',
+            ];
+
+            shuffle($icons);
+            foreach ($categories as $index => $category):
+                $icon = $icons[$index % count($icons)];
+
+                ?>
+
+                <a class="reveal paper-card rounded-3xl p-6" href="books?category_id=<?= (int)$category['id']?>"
+                ><i class="ti <?= $icon ?> text-4xl text-coffee"></i>
+                    <h3 class="mt-5 font-black"><?= $category['title'] ?></h3>
+                </a
+                >
+            <?php endforeach; ?>
         </div>
     </section>
 </main>

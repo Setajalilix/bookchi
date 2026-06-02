@@ -10,12 +10,6 @@ require_once __DIR__ . '/../models/Category.php';
 
 class PageController
 {
-    public function home(): void
-    {
-        $books = Book::latest(6);
-        $categories = Category::all();
-        require __DIR__ . '/../views/web/home/index.php';
-    }
 
     public function exchange(): void
     {

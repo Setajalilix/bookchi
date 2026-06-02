@@ -2,8 +2,7 @@
 
 use core\Router;
 
-/** @var Router $router */
-$router->get('/', 'PageController@home');
+$router->get('/', 'HomeController@index');
 $router->get('/home', 'PageController@home');
 $router->get('/exchange', 'PageController@exchange');
 $router->get('/profile', 'PageController@profile');
