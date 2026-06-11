@@ -30,7 +30,7 @@
                     <p class="mt-2 text-sm leading-7 text-coffee/65"><?= htmlspecialchars($book['author']) ?> · <?= htmlspecialchars($book['city']) ?></p>
                     <div class="mt-4 flex items-center justify-between gap-3">
                         <strong><?= number_format((int)$book['price']) ?> تومان</strong>
-                        <span class="badge <?= ($book['sell_type'] ?? '') === 'exchange' ? 'badge-sage' : 'badge-amber' ?>"><?= ($book['sell_type'] ?? '') === 'exchange' ? 'معاوضه' : 'فروش' ?></span>
+                        <span class="badge badge-amber">فروش</span>
                     </div>
                     <div class="mt-4 grid grid-cols-2 gap-2">
                         <a href="/books/show?id=<?= (int)$book['id'] ?>" class="btn-soft px-4 py-3 text-sm">جزئیات</a>

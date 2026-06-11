@@ -3,14 +3,13 @@
 use core\Router;
 
 $router->get('/', 'HomeController@index');
-$router->get('/home', 'PageController@home');
-$router->get('/exchange', 'PageController@exchange');
-$router->get('/profile', 'PageController@profile');
+$router->get('/home', 'HomeController@index');
+$router->get('/profile', 'DashboardController@index');
+$router->get('/dashboard', 'DashboardController@index');
+
 $router->get('/login', 'AuthController@login');
 $router->post('/login', 'AuthController@authenticate');
 $router->post('/logout', 'AuthController@logout');
-
-$router->get('/dashboard', 'DashboardController@index');
 
 $router->get('/shop', 'BookController@index');
 $router->post('/books', 'BookController@store');

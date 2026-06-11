@@ -15,17 +15,6 @@ class Book extends BaseModel
         return Category::find($categoryId);
     }
 
-    public static function bySellType(string $sellType, int $limit = 10): array
-    {
-        $pdo = static::db();
-        $query = $pdo->prepare('SELECT * FROM books WHERE sell_type = :sell_type ORDER BY id DESC LIMIT :limit');
-        $query->bindValue(':sell_type', $sellType);
-        $query->bindValue(':limit', $limit, PDO::PARAM_INT);
-        $query->execute();
-
-        return $query->fetchAll();
-    }
-
     public static function forUser(int $userId, int $limit = 20): array
     {
         if (!static::hasColumn('user_id')) {

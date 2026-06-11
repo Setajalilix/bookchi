@@ -26,6 +26,7 @@ class DashboardController
     {
         $user = $this->currentUser();
         $books = Book::forUser((int)$user['id'], 50);
+        $orders = $_SESSION['orders'] ?? [];
         require __DIR__ . '/../views/web/dashboard/index.php';
     }
 }

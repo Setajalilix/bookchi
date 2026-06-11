@@ -6,14 +6,13 @@
                 <strong class="text-2xl">کتابچی</strong>
             </div>
             <p class="mt-4 max-w-xl leading-8 text-cream/75">
-                کتابچی محلی گرم برای خرید، فروش و معاوضه کتاب‌های تمیز و خواندنی است؛ از رمان محبوب تا کتاب دانشگاهی کمیاب.
+                کتابچی محلی گرم برای خرید و فروش کتاب‌های تمیز و خواندنی است؛ از رمان محبوب تا کتاب دانشگاهی کمیاب.
             </p>
         </div>
         <div>
             <h3 class="font-black">دسترسی سریع</h3>
             <div class="mt-4 grid gap-3 text-cream/75">
                 <a href="/books">فروشگاه</a>
-                <a href="/exchange">معاوضه کتاب</a>
                 <a href="/books/create">ثبت کتاب</a>
                 <a href="/cart">سبد خرید</a>
                 <a href="/profile">حساب کاربری</a>

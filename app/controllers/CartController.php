@@ -15,14 +15,11 @@ class CartController
         }
     }
 
-    public function index(): void
+    private function cartBooks(): array
     {
-        $this->startSession();
         $cart = $_SESSION['cart'] ?? [];
         $books = [];
         $total = 0;
-        $success = $_SESSION['cart_success'] ?? null;
-        unset($_SESSION['cart_success']);
 
         foreach ($cart as $bookId => $quantity) {
             $book = Book::find((int)$bookId);
@@ -33,6 +30,16 @@ class CartController
                 $books[] = $book;
             }
         }
+
+        return [$books, $total];
+    }
+
+    public function index(): void
+    {
+        $this->startSession();
+        [$books, $total] = $this->cartBooks();
+        $success = $_SESSION['cart_success'] ?? null;
+        unset($_SESSION['cart_success']);
 
         require __DIR__ . '/../views/web/cart/index.php';
     }
@@ -63,8 +70,21 @@ class CartController
     public function checkout(): void
     {
         $this->startSession();
+        [$books, $total] = $this->cartBooks();
+
+        if (!empty($books)) {
+            $_SESSION['orders'][] = [
+                'code' => 'BK-' . date('Ymd-His'),
+                'created_at' => date('Y-m-d H:i:s'),
+                'items' => $books,
+                'total' => $total,
+                'status' => 'در حال بررسی',
+                'tracking' => 'سفارش ثبت شد و منتظر تماس فروشنده است.',
+            ];
+        }
+
         $_SESSION['cart'] = [];
-        $_SESSION['cart_success'] = 'خرید شما با موفقیت ثبت شد.';
+        $_SESSION['cart_success'] = 'خرید شما با موفقیت ثبت شد و از بخش حساب کاربری قابل پیگیری است.';
 
         header('Location: /cart');
         exit;

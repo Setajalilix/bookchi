@@ -6,7 +6,7 @@
 <main class="mx-auto max-w-7xl px-4 py-10 lg:px-8">
     <section class="reveal glass-card rounded-[2rem] p-6 md:p-8">
         <span class="text-sm font-black text-caramel"
-        >کتابت را بفروش یا معاوضه کن</span
+        >کتابت را برای فروش ثبت کن</span
         >
         <h1 class="mt-2 text-4xl font-black text-coffee-dark">
             ثبت کتاب توسط کاربر
@@ -61,14 +61,9 @@
                         placeholder="وضعیت جلد، صفحات، روش ارسال و نکته‌های مهم را بنویسید"
                 ></textarea>
             </label>
-            <div class="mt-5 grid gap-3 sm:grid-cols-2">
-                <label
-                        class="flex items-center gap-3 rounded-2xl bg-white/60 p-4 font-bold"
-                ><input type="radio" name="sell_type" value="cash" checked/> فروش نقدی</label
-                ><label
-                        class="flex items-center gap-3 rounded-2xl bg-white/60 p-4 font-bold"
-                ><input type="radio" name="sell_type" value="exchange"/> امکان معاوضه</label
-                >
+            <input type="hidden" name="sell_type" value="cash">
+            <div class="mt-5 rounded-2xl bg-white/60 p-4 font-bold text-coffee-dark">
+                <i class="ti ti-cash"></i> نوع آگهی: فروش نقدی
             </div>
             <button class="btn-primary mt-6 w-full px-6 py-4" type="submit">
                 ثبت کتاب

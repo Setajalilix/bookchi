@@ -95,7 +95,7 @@ class BookController
             'price' => $data['price'],
             'city' => $data['city'],
             'description' => $data['description'],
-            'sell_type' => $data['sell_type'],
+            'sell_type' => 'cash',
             'created_at' => date('Y-m-d H:i:s'),
         ];
 
@@ -164,7 +164,7 @@ class BookController
             'price' => $_POST['price'],
             'city' => $_POST['city'],
             'description' => $_POST['description'],
-            'sell_type' => $_POST['sell_type'],
+            'sell_type' => 'cash',
             'cover' => $imagePath,
         ]);
 

@@ -40,11 +40,9 @@ require_once __DIR__ . '/../../../config/app.php';
         <div class="hidden items-center gap-7 text-sm md:flex">
             <a class="nav-link <?= $activePage === 'home' ? 'active' : '' ?>" href="/">خانه</a>
             <a class="nav-link <?= $activePage === 'shop' ? 'active' : '' ?>" href="/books">فروشگاه</a>
-            <a class="nav-link <?= $activePage === 'exchange' ? 'active' : '' ?>" href="/exchange">معاوضه</a>
             <a class="nav-link <?= $activePage === 'sell' ? 'active' : '' ?>" href="/books/create">ثبت کتاب</a>
             <a class="nav-link <?= $activePage === 'cart' ? 'active' : '' ?>" href="/cart">سبد خرید <?= $cartCount > 0 ? '(' . $cartCount . ')' : '' ?></a>
-            <a class="nav-link <?= $activePage === 'profile' ? 'active' : '' ?>" href="/profile">حساب کاربری</a>
-            <a class="nav-link <?= $activePage === 'admin' ? 'active' : '' ?>" href="/dashboard">مدیریت</a>
+            <a class="nav-link <?= in_array($activePage, ['profile', 'admin']) ? 'active' : '' ?>" href="/profile">حساب کاربری و مدیریت</a>
         </div>
 
         <div class="hidden items-center gap-3 md:flex">
@@ -67,11 +65,9 @@ require_once __DIR__ . '/../../../config/app.php';
     <div data-mobile-menu class="mobile-menu mx-4 mb-4 rounded-3xl bg-cream p-3 shadow-xl md:hidden">
         <a href="/" class="block px-4 py-3">خانه</a>
         <a href="/books" class="block px-4 py-3">فروشگاه</a>
-        <a href="/exchange" class="block px-4 py-3">معاوضه</a>
         <a href="/books/create" class="block px-4 py-3">ثبت کتاب</a>
         <a href="/cart" class="block px-4 py-3">سبد خرید <?= $cartCount > 0 ? '(' . $cartCount . ')' : '' ?></a>
-        <a href="/profile" class="block px-4 py-3">حساب کاربری</a>
-        <a href="/dashboard" class="block px-4 py-3">مدیریت</a>
+        <a href="/profile" class="block px-4 py-3">حساب کاربری و مدیریت</a>
         <a href="/books/create" class="btn-primary mt-2 w-full px-5 py-3">ثبت آگهی رایگان</a>
     </div>
 </header>

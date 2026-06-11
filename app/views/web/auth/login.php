@@ -37,7 +37,7 @@
             <button class="btn-primary w-full px-6 py-4" type="submit">ورود به حساب</button>
         </div>
         <p class="mt-6 text-center text-xs leading-6 text-coffee/60">
-            با ورود، قوانین خرید، فروش و معاوضه کتابچی را می‌پذیرید.
+            با ورود، قوانین خرید و فروش کتابچی را می‌پذیرید.
         </p>
     </form>
 </main>
