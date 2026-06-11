@@ -17,12 +17,12 @@
         </p>
     </section>
     <section class="mt-8 grid gap-8 lg:grid-cols-[1fr_360px]">
-        <form class="reveal form-card rounded-[2rem] p-6" method="post" enctype="multipart/form-data" action="/books/update"">
+        <form class="reveal form-card rounded-[2rem] p-6" method="post" enctype="multipart/form-data" action="/books/update">
             <div class="grid gap-5 md:grid-cols-2">
                 <input
                         type="hidden"
                         name="id"
-                        value="<?= $book['id'] ?>"
+                        value="<?= (int)$book['id'] ?>"
                 >
                 <label class="field-label"
                 >نام کتاب
@@ -30,12 +30,12 @@
                             name="title"
                             id="bookTitle"
                             class="input-field mt-2"
-                            value="<?= $book['title'] ?>"
+                            value="<?= htmlspecialchars($book['title']) ?>"
                     ></label
                 >
                 <label class="field-label"
                 >نویسنده
-                    <input class="input-field mt-2" value="<?= $book['author']?>" placeholder="نام نویسنده" name="author"/></label
+                    <input class="input-field mt-2" value="<?= htmlspecialchars($book['author']) ?>" placeholder="نام نویسنده" name="author"/></label
                 ><label class="field-label"
                 >دسته‌بندی<select
                             class="select-field mt-2"
@@ -72,11 +72,11 @@
                 >قیمت پیشنهادی<input
                             required
                             name="price"
-                            value="<?=$book['price']?>"
+                            value="<?= htmlspecialchars($book['price']) ?>"
                             class="input-field mt-2"
                             placeholder="۱۶۵٬۰۰۰ تومان"/></label
                 ><label class="field-label"
-                >شهر<input class="input-field mt-2" name="city" placeholder="تهران" value="<?=$book['city']?>"
+                >شهر<input class="input-field mt-2" name="city" placeholder="تهران" value="<?= htmlspecialchars($book['city']) ?>"
                     /></label>
             </div>
             <label class="field-label mt-5"
@@ -86,7 +86,7 @@
                         name="description"
                         class="textarea-field mt-2"
                         placeholder="وضعیت جلد، صفحات، روش ارسال و نکته‌های مهم را بنویسید"
-                ><?=$book['description']?></textarea>
+                ><?= htmlspecialchars($book['description']) ?></textarea>
             </label>
             <div class="mt-5 grid gap-3 sm:grid-cols-2">
                 <label
@@ -117,13 +117,13 @@
                     class="book-cover mt-5 h-72 rounded-3xl p-6 text-cream"
                     id="previewCover"
                     style="
-                            background-image:url('<?= $book['cover'] ?>');
+                            background-image:url('<?= htmlspecialchars($book['cover']) ?>');
                             background-size:cover;
                             background-position:center;
                             "            >
             </div>
             <h3 id="previewTitle" class="mt-4 text-2xl font-black">
-                <?= $book['title'] ?>
+                <?= htmlspecialchars($book['title']) ?>
             </h3>
             <p class="mt-5 leading-8 text-coffee/70">
                 عکس واضح، قیمت منصفانه و توضیح دقیق باعث می‌شود آگهی سریع‌تر دیده

@@ -1,16 +1,47 @@
 <?php $activePage = 'shop'; ?>
-<?php require_once __DIR__ . '/../../../../config/app.php'; ?>
-<?php include LAYOUT_PATH . "/header.php";
-?><main class="mx-auto max-w-7xl px-4 py-10 lg:px-8">
-<h1 class="text-3xl font-black mb-6">فروشگاه کتاب</h1>
-<div class="grid gap-4 md:grid-cols-3">
-<?php foreach ($books as $book): ?>
-  <article class="paper-card rounded-2xl p-4">
-    <a href="/books/show?id=<?= (int)$book['id'] ?>"><h3 class="font-black"><?= htmlspecialchars($book['title']) ?></h3></a>
-    <p class="text-sm"><?= htmlspecialchars($book['author']) ?> · <?= htmlspecialchars($book['city']) ?></p>
-    <strong><?= number_format((int)$book['price']) ?> تومان</strong>
-  </article>
-<?php endforeach; ?>
-</div>
+<?php include __DIR__ . '/../../layouts/header.php'; ?>
+<main class="mx-auto max-w-7xl px-4 py-10 lg:px-8">
+    <section class="reveal glass-card rounded-[2rem] p-6 md:p-8">
+        <span class="text-sm font-black text-caramel">فروشگاه کتابچی</span>
+        <div class="mt-2 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+                <h1 class="text-4xl font-black text-coffee-dark">کتاب‌های ثبت‌شده کاربران</h1>
+                <p class="mt-4 leading-8 text-coffee/70">این لیست از دیتابیس خوانده می‌شود و دیگر نمونه ثابت نیست.</p>
+            </div>
+            <a href="/books/create" class="btn-primary px-6 py-3">ثبت آگهی جدید</a>
+        </div>
+    </section>
+
+    <section class="mt-8 grid gap-5 md:grid-cols-3 lg:grid-cols-4">
+        <?php if (empty($books)): ?>
+            <div class="paper-card rounded-[2rem] p-6 md:col-span-2">
+                <h2 class="text-xl font-black">هنوز کتابی ثبت نشده است.</h2>
+                <p class="mt-3 leading-8 text-coffee/65">اولین کتاب فروشگاه را شما ثبت کنید.</p>
+            </div>
+        <?php endif; ?>
+
+        <?php foreach ($books as $book): ?>
+            <article class="reveal paper-card rounded-[2rem] p-4">
+                <a href="/books/show?id=<?= (int)$book['id'] ?>">
+                    <img class="h-56 w-full rounded-3xl object-cover" src="<?= htmlspecialchars($book['cover'] ?? '/assets/book-placeholder.svg') ?>" alt="<?= htmlspecialchars($book['title']) ?>">
+                </a>
+                <div class="mt-4">
+                    <a href="/books/show?id=<?= (int)$book['id'] ?>"><h3 class="text-xl font-black"><?= htmlspecialchars($book['title']) ?></h3></a>
+                    <p class="mt-2 text-sm leading-7 text-coffee/65"><?= htmlspecialchars($book['author']) ?> · <?= htmlspecialchars($book['city']) ?></p>
+                    <div class="mt-4 flex items-center justify-between gap-3">
+                        <strong><?= number_format((int)$book['price']) ?> تومان</strong>
+                        <span class="badge <?= ($book['sell_type'] ?? '') === 'exchange' ? 'badge-sage' : 'badge-amber' ?>"><?= ($book['sell_type'] ?? '') === 'exchange' ? 'معاوضه' : 'فروش' ?></span>
+                    </div>
+                    <div class="mt-4 grid grid-cols-2 gap-2">
+                        <a href="/books/show?id=<?= (int)$book['id'] ?>" class="btn-soft px-4 py-3 text-sm">جزئیات</a>
+                        <form method="post" action="/cart/add">
+                            <input type="hidden" name="book_id" value="<?= (int)$book['id'] ?>">
+                            <button class="btn-primary w-full px-4 py-3 text-sm" type="submit">افزودن</button>
+                        </form>
+                    </div>
+                </div>
+            </article>
+        <?php endforeach; ?>
+    </section>
 </main>
 <?php include __DIR__ . '/../../layouts/footer.php'; ?>
