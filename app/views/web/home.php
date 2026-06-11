@@ -1,4 +1,4 @@
-<?php $activePage = "index"; ?>
+<?php $activePage = "home"; ?>
 <?php include __DIR__ . "/../layouts/header.php"; ?>
 
 <main>
@@ -12,15 +12,15 @@
             <h1
                     class="text-4xl font-black leading-[1.35] text-coffee-dark md:text-6xl"
             >
-                خرید، فروش و معاوضه کتاب دست‌دوم با تجربه‌ای دلنشین.
+                خرید و فروش کتاب دست‌دوم با تجربه‌ای دلنشین.
             </h1>
             <p class="mt-6 max-w-2xl text-lg leading-9 text-coffee-dark/70">
                 کتابچی کنار دوستداران کتاب است تا کتاب‌های تمیزشان را بفروشند،
-                عنوان‌های تازه پیدا کنند و با چند کلیک پیشنهاد معاوضه بدهند.
+                عنوان‌های تازه پیدا کنند و خریدشان را ساده پیگیری کنند.
             </p>
             <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href="shop.php" class="btn-primary px-7 py-4">دیدن کتاب‌ها</a
-                ><a href="exchange.php" class="btn-soft px-7 py-4">شروع معاوضه</a>
+                <a href="/books" class="btn-primary px-7 py-4">دیدن کتاب‌ها</a>
+                <a href="/books/create" class="btn-soft px-7 py-4">ثبت کتاب برای فروش</a>
             </div>
             <div class="mt-10 grid max-w-xl grid-cols-3 gap-3">
                 <div class="paper-card rounded-3xl p-4 text-center">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="paper-card rounded-3xl p-4 text-center">
                     <strong class="block text-2xl text-coffee">۳۴۰+</strong
-                    ><span class="text-xs text-coffee/70">معاوضه موفق</span>
+                    ><span class="text-xs text-coffee/70">خرید موفق</span>
                 </div>
                 <div class="paper-card rounded-3xl p-4 text-center">
                     <strong class="block text-2xl text-coffee">۴.۸</strong
@@ -42,7 +42,7 @@
                 <div
                         class="book-cover floaty h-72 rounded-3xl p-5 text-cream"
                         style="--cover-a: #6f3f27; --cover-b: #c47a3b;
-                        background-image:url('<?= $popularBook['cover'] ?>');
+                        background-image:url('<?= htmlspecialchars($popularBook['cover'] ?? '/assets/book-placeholder.svg') ?>');
                 ">
                     <i class="ti ti-leaf text-4xl"></i>
                     <h3 class="mt-36 text-2xl font-black">کتاب محبوب هفته</h3>
@@ -53,18 +53,18 @@
                         <h3 class="mt-3 font-black">بسته‌بندی امن</h3>
                     </div>
                     <div class="paper-card rounded-3xl p-4">
-                        <span class="badge badge-amber">معاوضه</span>
-                        <h3 class="mt-3 font-black">پیشنهاد مستقیم</h3>
+                        <span class="badge badge-amber">خرید آسان</span>
+                        <h3 class="mt-3 font-black">سبد خرید ساده</h3>
                     </div>
                 </div>
             </div>
             <div class="mt-5 rounded-3xl bg-white/55 p-5">
                 <div class="flex items-center justify-between">
                     <div>
-                        <h3 class="font-black"><?= $popularBook['title'] ?></h3>
-                        <p class="text-sm text-coffee/60"><?= $popularBook['author'] . ' . ' . $popularBook['city']?></p>
+                        <h3 class="font-black"><?= htmlspecialchars($popularBook['title'] ?? 'کتابچی') ?></h3>
+                        <p class="text-sm text-coffee/60"><?= htmlspecialchars(($popularBook['author'] ?? 'کتاب دست‌دوم') . ' · ' . ($popularBook['city'] ?? 'ایران')) ?></p>
                     </div>
-                    <strong class="text-coffee"><?= number_format($popularBook['price'], 0) ?></strong>
+                    <strong class="text-coffee"><?= number_format((int)($popularBook['price'] ?? 0), 0) ?></strong>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
         <div class="grid gap-6 md:grid-cols-3">
             <?php foreach ($books as $book):
                 $status = '';
-                $sell_type = $book['sell_type'] === 'cash' ? 'نقدی' : 'قابل تعویض';
+                $sell_type = 'فروش نقدی';
                 switch ($book['status']) {
                     case 'new':
                         $status = 'در حد نو';
@@ -102,17 +102,17 @@
                         <div
                                 class="book-cover h-56 rounded-3xl p-6 text-cream"
                                 style="
-                                        background-image:url('<?= $book['cover'] ?>');
+                                        background-image:url('<?= htmlspecialchars($book['cover'] ?? '/assets/book-placeholder.svg') ?>');
                                         background-size:cover;
                                         background-position:center;
                                         ">
                         </div>
                         <div class="flex justify-between mt-5">
-                            <h3 class=" text-xl font-black"><?= $book['title'] ?></h3>
-                            <p class=" text-sm text-cream/75"><?= $book['author'] ?></p>
+                            <h3 class=" text-xl font-black"><?= htmlspecialchars($book['title']) ?></h3>
+                            <p class=" text-sm text-cream/75"><?= htmlspecialchars($book['author']) ?></p>
                         </div>
                         <div class="flex items-start justify-between gap-3">
-                            <p class="text-sm text-coffee/60 mt-5"><?= $book['city'] . ' | ' . $status ?>
+                            <p class="text-sm text-coffee/60 mt-5"><?= htmlspecialchars($book['city'] . ' | ' . $status) ?>
                             </p>
                             <button
                                     data-favorite

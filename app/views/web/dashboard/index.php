@@ -1,81 +1,46 @@
-<?php $activePage = "admin"; ?>
-
-<?php
-require_once __DIR__ . '/../../../../config/app.php';
-include LAYOUT_PATH . "/header.php";
-?>
+<?php $activePage = 'profile'; ?>
+<?php include __DIR__ . '/../../layouts/header.php'; ?>
 <main class="mx-auto max-w-7xl px-4 py-10 lg:px-8">
-    <section class="reveal glass-card rounded-[2rem] p-6 md:p-8">
-        <div
-                class="flex flex-col gap-5 md:flex-row md:items-end md:justify-between"
-        >
-            <div>
-                <span class="text-sm font-black text-caramel">داشبورد مدیر</span>
-                <h1 class="mt-2 text-4xl font-black text-coffee-dark">
-                    مدیریت کتابچی
-                </h1>
-                <p class="mt-4 leading-8 text-coffee/70">
-                    آمار آگهی‌ها، کاربران، سفارش‌ها و پیشنهادهای معاوضه در یک نمای
-                    مرتب و قابل پیگیری.
-                </p>
+    <section class="reveal glass-card rounded-[2.4rem] p-6 md:p-8">
+        <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div class="flex items-center gap-4">
+                <div class="grid h-20 w-20 place-items-center rounded-3xl bg-coffee text-3xl font-black text-cream">
+                    <?= htmlspecialchars(function_exists('mb_substr') ? mb_substr($user['name'] ?? 'ک', 0, 1) : 'ک') ?>
+                </div>
+                <div>
+                    <span class="text-sm font-black text-caramel">حساب کاربری و مدیریت</span>
+                    <h1 class="mt-2 text-4xl font-black text-coffee-dark"><?= htmlspecialchars($user['name']) ?></h1>
+                    <p class="mt-2 text-coffee/65">شماره تماس: <?= htmlspecialchars($user['phone']) ?></p>
+                </div>
             </div>
-            <a href="/profile" class="btn-soft px-6 py-3">بازگشت به حساب</a>
+            <div class="flex flex-col gap-3 sm:flex-row">
+                <a href="/books/create" class="btn-primary px-6 py-3"><i class="ti ti-plus"></i> ثبت کتاب تازه</a>
+                <a href="/cart" class="btn-soft px-6 py-3"><i class="ti ti-shopping-cart"></i> سبد خرید</a>
+            </div>
         </div>
     </section>
+
     <section class="mt-6 grid gap-4 md:grid-cols-4">
-        <div class="reveal paper-card rounded-3xl p-5">
-            <i class="ti ti-users text-3xl text-coffee"></i
-            ><strong class="mt-4 block text-2xl">۲٬۴۱۰</strong
-            ><span class="text-sm text-coffee/60">کاربر فعال</span>
-        </div>
-        <div class="reveal paper-card rounded-3xl p-5">
-            <i class="ti ti-books text-3xl text-coffee"></i
-            ><strong class="mt-4 block text-2xl">۱٬۲۸۰</strong
-            ><span class="text-sm text-coffee/60">آگهی کتاب</span>
-        </div>
-        <div class="reveal paper-card rounded-3xl p-5">
-            <i class="ti ti-hourglass text-3xl text-coffee"></i
-            ><strong class="mt-4 block text-2xl">۳۲</strong
-            ><span class="text-sm text-coffee/60">در انتظار تایید</span>
-        </div>
-        <div class="reveal paper-card rounded-3xl p-5">
-            <i class="ti ti-report-money text-3xl text-coffee"></i
-            ><strong class="mt-4 block text-2xl">۱۸.۶M</strong
-            ><span class="text-sm text-coffee/60">فروش امروز</span>
-        </div>
+        <div class="reveal paper-card rounded-3xl p-5"><i class="ti ti-books text-3xl text-coffee"></i><strong class="mt-4 block text-2xl"><?= count($books) ?></strong><span class="text-sm text-coffee/60">کتاب‌های من</span></div>
+        <div class="reveal paper-card rounded-3xl p-5"><i class="ti ti-cash text-3xl text-coffee"></i><strong class="mt-4 block text-2xl"><?= number_format(array_sum(array_map(fn($book) => (int)($book['price'] ?? 0), $books))) ?></strong><span class="text-sm text-coffee/60">ارزش آگهی‌ها</span></div>
+        <div class="reveal paper-card rounded-3xl p-5"><i class="ti ti-receipt text-3xl text-coffee"></i><strong class="mt-4 block text-2xl"><?= count($orders) ?></strong><span class="text-sm text-coffee/60">خریدهای من</span></div>
+        <div class="reveal paper-card rounded-3xl p-5"><i class="ti ti-shopping-cart text-3xl text-coffee"></i><strong class="mt-4 block text-2xl"><?= array_sum($_SESSION['cart'] ?? []) ?></strong><span class="text-sm text-coffee/60">کالا در سبد</span></div>
     </section>
-    <section class="mt-8 grid gap-8 lg:grid-cols-[300px_1fr]">
-        <aside class="reveal form-card rounded-[2rem] p-5">
-            <h2 class="text-xl font-black">فیلتر مدیریت</h2>
-            <div class="mt-5 space-y-4">
-                <label class="field-label"
-                >وضعیت<select class="select-field mt-2">
-                        <option>همه</option>
-                        <option>در انتظار تایید</option>
-                        <option>فعال</option>
-                        <option>رد شده</option>
-                    </select></label
-                ><label class="field-label"
-                >جستجو<input
-                            class="input-field mt-2"
-                            placeholder="نام کتاب یا کاربر"/></label
-                >
-                <button class="btn-primary w-full px-5 py-3" type="button">
-                    اعمال فیلتر
-                </button>
-            </div>
-        </aside>
-        <div class="reveal form-card rounded-[2rem] p-5">
-            <div class="mb-5 flex items-center justify-between">
-                <h2 class="text-xl font-black">آخرین آگهی‌ها</h2>
-                <button class="btn-soft px-4 py-2 text-sm">خروجی اکسل</button>
+
+    <section class="mt-8 grid gap-8 xl:grid-cols-[1fr_420px]">
+        <div class="reveal form-card rounded-[2.2rem] p-5 md:p-6">
+            <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                    <h2 class="text-2xl font-black text-coffee-dark">مدیریت کتاب‌های من</h2>
+                    <p class="mt-2 text-sm text-coffee/60">ویرایش و حذف فقط برای کتاب‌هایی فعال است که با همین حساب ثبت شده‌اند.</p>
+                </div>
+                <a href="/books/create" class="btn-soft px-4 py-3 text-sm">ثبت کتاب</a>
             </div>
             <div class="table-shell overflow-x-auto">
                 <table class="admin-table">
                     <thead>
                     <tr>
                         <th>کتاب</th>
-                        <th>کاربر</th>
                         <th>شهر</th>
                         <th>قیمت</th>
                         <th>وضعیت</th>
@@ -83,60 +48,77 @@ include LAYOUT_PATH . "/header.php";
                     </tr>
                     </thead>
                     <tbody>
+                    <?php if (empty($books)): ?>
+                        <tr><td colspan="5">هنوز کتابی ثبت نکرده‌اید.</td></tr>
+                    <?php endif; ?>
                     <?php foreach ($books as $book): ?>
-
-                        <?php
-                        $badgeClass = match ($book['status']) {
-                            'clear' => 'badge-green',
-                            'new' => 'badge-amber',
-                            'have_lines', 'rejected' => 'badge-red',
-                            default => 'badge-sage'
-                        };
-
-                        $statusText = match ($book['status']) {
-                            'clear' => 'تمیز',
-                            'new' => 'در حد نو',
-                            'have_lines' => 'دارای خط خوردگی',
-                            default => $book['status']
-                        };
-                        ?>
-
                         <tr>
-                            <td><?= $book['title'] ?></td>
-
                             <td>
-                                <?= $book['author'] ?? 'نامشخص' ?>
+                                <div class="flex items-center gap-3">
+                                    <img class="h-14 w-12 rounded-xl object-cover" src="<?= htmlspecialchars($book['cover'] ?? '/assets/book-placeholder.svg') ?>" alt="">
+                                    <div>
+                                        <strong><?= htmlspecialchars($book['title']) ?></strong>
+                                        <p class="mt-1 text-xs text-coffee/60"><?= htmlspecialchars($book['author'] ?? 'نامشخص') ?></p>
+                                    </div>
+                                </div>
                             </td>
-
+                            <td><?= htmlspecialchars($book['city'] ?? '-') ?></td>
+                            <td><?= number_format((int)($book['price'] ?? 0)) ?> تومان</td>
+                            <td><span class="badge badge-amber">فروش نقدی</span></td>
                             <td>
-                                <?= $book['city'] ?>
-                            </td>
-
-                            <td>
-                                <?= number_format($book['price']) ?>
-                            </td>
-
-                            <td>
-            <span class="badge <?= $badgeClass ?>">
-                <?= $statusText ?>
-            </span>
-                            </td>
-
-                            <td>
-                                <a  href="/books/edit?id=<?= $book['id'] ?>" class="btn-ghost px-3 py-2 text-sm">
-                                    ویرایش
-                                </a>
-                                <a href="/books/delete?id=<?= $book['id'] ?>" class="btn-ghost px-3 py-2 text-sm text-red-500">
-                                    حذف
-                                </a>
+                                <div class="flex gap-2">
+                                    <a href="/books/edit?id=<?= (int)$book['id'] ?>" class="btn-ghost px-3 py-2 text-sm">ویرایش</a>
+                                    <form method="post" action="/books/delete" onsubmit="return confirm('این کتاب حذف شود؟')">
+                                        <input type="hidden" name="id" value="<?= (int)$book['id'] ?>">
+                                        <button class="btn-ghost px-3 py-2 text-sm text-red-500" type="submit">حذف</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
-
                     <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
         </div>
+
+        <aside class="reveal paper-card rounded-[2.2rem] p-6">
+            <h2 class="text-2xl font-black text-coffee-dark">خریدهای من و پیگیری سفارشات</h2>
+            <p class="mt-2 text-sm leading-7 text-coffee/65">بعد از تکمیل خرید، سفارش‌ها در همین جدول ذخیره و قابل پیگیری هستند.</p>
+            <div class="table-shell mt-5 overflow-x-auto">
+                <table class="admin-table min-w-[520px]">
+                    <thead>
+                    <tr>
+                        <th>کد</th>
+                        <th>تعداد</th>
+                        <th>مبلغ</th>
+                        <th>وضعیت</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php if (empty($orders)): ?>
+                        <tr><td colspan="4">هنوز خریدی ثبت نشده است.</td></tr>
+                    <?php endif; ?>
+                    <?php foreach (array_reverse($orders) as $order): ?>
+                        <tr>
+                            <td>
+                                <strong><?= htmlspecialchars($order['code'] ?? '-') ?></strong>
+                                <p class="mt-1 text-xs text-coffee/60"><?= htmlspecialchars($order['created_at'] ?? '-') ?></p>
+                            </td>
+                            <td><?= count($order['items'] ?? []) ?></td>
+                            <td><?= number_format((int)($order['total'] ?? 0)) ?> تومان</td>
+                            <td>
+                                <span class="badge badge-green"><?= htmlspecialchars($order['status'] ?? 'ثبت شده') ?></span>
+                                <p class="mt-2 text-xs leading-6 text-coffee/60"><?= htmlspecialchars($order['tracking'] ?? '') ?></p>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <?php if (empty($orders)): ?>
+                <a href="/books" class="btn-primary mt-5 w-full px-5 py-3">رفتن به فروشگاه</a>
+            <?php endif; ?>
+        </aside>
     </section>
 </main>
-<?php include LAYOUT_PATH . "/footer.php"; ?>
+<?php include __DIR__ . '/../../layouts/footer.php'; ?>
