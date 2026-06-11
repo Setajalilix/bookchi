@@ -129,8 +129,17 @@ abstract class BaseModel
         $pdo = static::db();
         $query = $pdo->query(
             "SELECT * FROM " . static::$table .
-            "  LIMIT " . $limit
+            " ORDER BY id DESC LIMIT " . (int)$limit
         );
         return $query->fetchAll();
+    }
+
+    public static function hasColumn(string $column): bool
+    {
+        $pdo = static::db();
+        $query = $pdo->prepare("SHOW COLUMNS FROM " . static::$table . " LIKE :column");
+        $query->execute(['column' => $column]);
+
+        return (bool)$query->fetch();
     }
 }
