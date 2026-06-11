@@ -73,6 +73,7 @@ class BookController
             exit;
         }
     }
+
     public function edit(): void
     {
         $id = (int)($_GET['id'] ?? 0);
@@ -91,6 +92,7 @@ class BookController
 
         require __DIR__ . '/../views/web/books/edit.php';
     }
+
     public function update(): void
     {
         $id = (int)($_POST['id'] ?? 0);
@@ -140,6 +142,24 @@ class BookController
             'cover' => $imagePath,
         ]);
 
+        header('Location: /dashboard');
+        exit;
+    }
+
+    public function delete()
+    {
+        $id = (int)($_POST['id'] ?? 0);
+
+        $book = Book::find($id);
+
+        if (!$book) {
+            die('Book not found');
+        }
+        $imagePath = $book['cover'];
+        $uploadDir = __DIR__ . '/../../public/uploads/books/';
+
+        unlink($uploadDir . $imagePath);
+        Book::delete($book['id']);
         header('Location: /dashboard');
         exit;
     }

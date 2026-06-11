@@ -126,14 +126,15 @@ include LAYOUT_PATH . "/header.php";
                                 <a  href="/books/edit?id=<?= $book['id'] ?>" class="btn-ghost px-3 py-2 text-sm">
                                     ویرایش
                                 </a>
-                                <button class="btn-ghost px-3 py-2 text-sm text-red-500">
+                                <a href="/books/delete?id=<?= $book['id'] ?>" class="btn-ghost px-3 py-2 text-sm text-red-500">
                                     حذف
-                                </button>
+                                </a>
                             </td>
                         </tr>
 
                     <?php endforeach; ?>
-                    </tbody>                </table>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>

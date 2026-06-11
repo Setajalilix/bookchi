@@ -15,7 +15,6 @@ class Book extends BaseModel
         return Category::find($categoryId);
     }
 
-
     public static function bySellType(string $sellType, int $limit = 10): array
     {
         $pdo = static::db();

@@ -16,3 +16,4 @@ $router->get('/books/create', 'BookController@create');
 $router->get('/books/show', 'BookController@show');
 $router->get('/books/edit', 'BookController@edit');
 $router->post('/books/update', 'BookController@update');
+$router->post('/books/delete', 'BookController@delete');
