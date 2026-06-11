@@ -42,8 +42,8 @@
                 <div
                         class="book-cover floaty h-72 rounded-3xl p-5 text-cream"
                         style="--cover-a: #6f3f27; --cover-b: #c47a3b;
-                        background-image:url('<?= $popularBook['cover'] ?>');
-                ">
+                                background-image:url('<?= $popularBook['cover'] ?>');
+                                ">
                     <i class="ti ti-leaf text-4xl"></i>
                     <h3 class="mt-36 text-2xl font-black">کتاب محبوب هفته</h3>
                 </div>
@@ -62,7 +62,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <h3 class="font-black"><?= $popularBook['title'] ?></h3>
-                        <p class="text-sm text-coffee/60"><?= $popularBook['author'] . ' . ' . $popularBook['city']?></p>
+                        <p class="text-sm text-coffee/60"><?= $popularBook['author'] . ' . ' . $popularBook['city'] ?></p>
                     </div>
                     <strong class="text-coffee"><?= number_format($popularBook['price'], 0) ?></strong>
                 </div>
@@ -137,20 +137,18 @@
         <div class="grid gap-5 md:grid-cols-4">
             <?php
             $icons = [
+                    'ti-heart',
                     'ti-book-2',
                     'ti-school',
                     'ti-brain',
-                    'ti-heart',
-                    'ti-brand-4chan',
             ];
 
-            shuffle($icons);
             foreach ($categories as $index => $category):
-                $icon = $icons[$index % count($icons)];
+                $icon = $icons[$index];
 
                 ?>
 
-                <a class="reveal paper-card rounded-3xl p-6" href="books?category_id=<?= (int)$category['id']?>"
+                <a class="reveal paper-card rounded-3xl p-6" href="books?category_id=<?= (int)$category['id'] ?>"
                 ><i class="ti <?= $icon ?> text-4xl text-coffee"></i>
                     <h3 class="mt-5 font-black"><?= $category['title'] ?></h3>
                 </a
