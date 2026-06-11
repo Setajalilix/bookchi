@@ -45,9 +45,6 @@ class AuthController
                 'phone' => $phone,
             ];
 
-            if (User::hasColumn('created_at')) {
-                $userData['created_at'] = date('Y-m-d H:i:s');
-            }
 
             $created = User::create($userData);
 

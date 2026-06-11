@@ -89,6 +89,7 @@ class BookController
         $bookData = [
             'title' => $data['title'],
             'author' => $data['author'],
+            'owner_id' => (int)$user['id'],
             'category_id' => $data['category_id'],
             'cover' => $imagePath,
             'status' => $data['status'],
@@ -98,10 +99,6 @@ class BookController
             'sell_type' => 'cash',
             'created_at' => date('Y-m-d H:i:s'),
         ];
-
-        if (Book::hasColumn('user_id')) {
-            $bookData['user_id'] = (int)$user['id'];
-        }
 
         Book::create($bookData);
         header('Location: /dashboard');

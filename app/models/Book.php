@@ -17,13 +17,10 @@ class Book extends BaseModel
 
     public static function forUser(int $userId, int $limit = 20): array
     {
-        if (!static::hasColumn('user_id')) {
-            return [];
-        }
 
         $pdo = static::db();
-        $query = $pdo->prepare('SELECT * FROM books WHERE user_id = :user_id ORDER BY id DESC LIMIT :limit');
-        $query->bindValue(':user_id', $userId, PDO::PARAM_INT);
+        $query = $pdo->prepare('SELECT * FROM books WHERE owner_id = :owner_id ORDER BY id DESC LIMIT :limit');
+        $query->bindValue(':owner_id', $userId);
         $query->bindValue(':limit', $limit, PDO::PARAM_INT);
         $query->execute();
 
@@ -32,15 +29,12 @@ class Book extends BaseModel
 
     public static function belongsToUser(int $bookId, int $userId): bool
     {
-        if (!static::hasColumn('user_id')) {
-            return false;
-        }
 
         $pdo = static::db();
-        $query = $pdo->prepare('SELECT id FROM books WHERE id = :id AND user_id = :user_id LIMIT 1');
+        $query = $pdo->prepare('SELECT id FROM books WHERE id = :id AND owner_id = :owner_id LIMIT 1');
         $query->execute([
             'id' => $bookId,
-            'user_id' => $userId,
+            'owner_id' => $userId,
         ]);
 
         return (bool)$query->fetch();

@@ -108,22 +108,6 @@ abstract class BaseModel
         ]);
     }
 
-    public static function where(string $column, mixed $value): array
-    {
-        $pdo = static::db();
-
-        $query = $pdo->prepare(
-            "SELECT * FROM " . static::$table .
-            " WHERE $column = :value"
-        );
-
-        $query->execute([
-            'value' => $value
-        ]);
-
-        return $query->fetchAll();
-    }
-
     public static function latest(int $limit = 10)
     {
         $pdo = static::db();
@@ -132,14 +116,5 @@ abstract class BaseModel
             " ORDER BY id DESC LIMIT " . (int)$limit
         );
         return $query->fetchAll();
-    }
-
-    public static function hasColumn(string $column): bool
-    {
-        $pdo = static::db();
-        $query = $pdo->prepare("SHOW COLUMNS FROM " . static::$table . " LIKE :column");
-        $query->execute(['column' => $column]);
-
-        return (bool)$query->fetch();
     }
 }
