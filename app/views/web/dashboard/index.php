@@ -80,45 +80,102 @@
                 </table>
             </div>
         </div>
-
+        <?php
+        $statusMap = [
+                'pending' => 'در انتظار بررسی',
+                'paid' => 'پرداخت شده',
+                'processing' => 'در حال آماده سازی',
+                'shipped' => 'ارسال شده',
+                'completed' => 'تکمیل شده',
+                'cancelled' => 'لغو شده',
+        ];
+        ?>
         <aside class="reveal paper-card rounded-[2.2rem] p-6">
-            <h2 class="text-2xl font-black text-coffee-dark">خریدهای من و پیگیری سفارشات</h2>
-            <p class="mt-2 text-sm leading-7 text-coffee/65">بعد از تکمیل خرید، سفارش‌ها در همین جدول ذخیره و قابل پیگیری هستند.</p>
+            <h2 class="text-2xl font-black text-coffee-dark">
+                خریدهای من و پیگیری سفارشات
+            </h2>
+
+            <p class="mt-2 text-sm leading-7 text-coffee/65">
+                بعد از تکمیل خرید، سفارش‌های شما در این بخش نمایش داده می‌شوند.
+            </p>
+
             <div class="table-shell mt-5 overflow-x-auto">
-                <table class="admin-table min-w-[520px]">
+                <table class="admin-table min-w-[700px]">
                     <thead>
                     <tr>
-                        <th>کد</th>
+                        <th>کتاب‌ها</th>
                         <th>تعداد</th>
                         <th>مبلغ</th>
                         <th>وضعیت</th>
+                        <th>تاریخ</th>
                     </tr>
                     </thead>
+
                     <tbody>
+
                     <?php if (empty($orders)): ?>
-                        <tr><td colspan="4">هنوز خریدی ثبت نشده است.</td></tr>
-                    <?php endif; ?>
-                    <?php foreach (array_reverse($orders) as $order): ?>
                         <tr>
-                            <td>
-                                <strong><?= htmlspecialchars($order['code'] ?? '-') ?></strong>
-                                <p class="mt-1 text-xs text-coffee/60"><?= htmlspecialchars($order['created_at'] ?? '-') ?></p>
-                            </td>
-                            <td><?= count($order['items'] ?? []) ?></td>
-                            <td><?= number_format((int)($order['total'] ?? 0)) ?> تومان</td>
-                            <td>
-                                <span class="badge badge-green"><?= htmlspecialchars($order['status'] ?? 'ثبت شده') ?></span>
-                                <p class="mt-2 text-xs leading-6 text-coffee/60"><?= htmlspecialchars($order['tracking'] ?? '') ?></p>
+                            <td colspan="5">
+                                هنوز سفارشی ثبت نشده است.
                             </td>
                         </tr>
+                    <?php endif; ?>
+
+                    <?php foreach ($orders as $order): ?>
+
+                        <?php
+                        $items = $order['items'] ?? [];
+                        $bookNames = [];
+                        $totalCount = 0;
+
+                        foreach ($items as $item) {
+                            $bookNames[] = $item['title'];
+                            $totalCount += $item['quantity'];
+                        }
+                        ?>
+
+                        <tr>
+
+                            <td>
+                                <div class="flex flex-col gap-1">
+                                    <?php foreach ($bookNames as $book): ?>
+                                        <span><?= $book ?></span>
+                                    <?php endforeach; ?>
+                                </div>
+                            </td>
+
+                            <td>
+                                <?= $totalCount ?>
+                            </td>
+
+                            <td>
+                                <?= number_format($order['total_price']) ?>
+                                تومان
+                            </td>
+
+                            <td>
+                        <span class="badge badge-green">
+                            <?= $statusMap[$order['status']] ?? $order['status'] ?>
+                        </span>
+                            </td>
+
+                            <td>
+                                <?= $order['created_at'] ?>
+                            </td>
+
+                        </tr>
+
                     <?php endforeach; ?>
+
                     </tbody>
                 </table>
             </div>
+
             <?php if (empty($orders)): ?>
-                <a href="/books" class="btn-primary mt-5 w-full px-5 py-3">رفتن به فروشگاه</a>
+                <a href="/books" class="btn-primary mt-5 w-full px-5 py-3">
+                    رفتن به فروشگاه
+                </a>
             <?php endif; ?>
-        </aside>
-    </section>
+        </aside>    </section>
 </main>
 <?php include __DIR__ . '/../../layouts/footer.php'; ?>

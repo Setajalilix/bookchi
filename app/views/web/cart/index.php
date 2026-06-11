@@ -6,7 +6,7 @@
             <div class="p-6 md:p-9">
                 <span class="badge badge-cream"><i class="ti ti-shopping-cart"></i> سبد خرید</span>
                 <h1 class="mt-4 text-4xl font-black leading-tight text-coffee-dark">کتاب‌هایی که برای خرید انتخاب کرده‌اید</h1>
-                <p class="mt-4 max-w-2xl leading-8 text-coffee/70">سبد خرید با session نگهداری می‌شود؛ اگر یک کتاب را چند بار اضافه کنید، تعداد همان آیتم بیشتر می‌شود.</p>
+                <p class="mt-4 max-w-2xl leading-8 text-coffee/70"> اگر یک کتاب را چند بار اضافه کنید، تعداد همان آیتم بیشتر می‌شود.</p>
                 <?php if (!empty($success)): ?>
                     <div class="badge badge-green mt-5"><?= htmlspecialchars($success) ?></div>
                 <?php endif; ?>

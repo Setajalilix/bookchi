@@ -3,8 +3,14 @@
 namespace controllers;
 
 use models\Book;
+use models\Cart;
+use models\Order;
+use models\OrderItem;
 
 require_once __DIR__ . '/../models/Book.php';
+require_once __DIR__ . '/../models/Cart.php';
+require_once __DIR__ . '/../models/Order.php';
+require_once __DIR__ . '/../models/OrderItem.php';
 
 class CartController
 {
@@ -17,6 +23,7 @@ class CartController
 
     private function cartBooks(): array
     {
+        $this->startSession();
         $cart = $_SESSION['cart'] ?? [];
         $books = [];
         $total = 0;
@@ -37,31 +44,74 @@ class CartController
     public function index(): void
     {
         $this->startSession();
-        [$books, $total] = $this->cartBooks();
-        $success = $_SESSION['cart_success'] ?? null;
-        unset($_SESSION['cart_success']);
+        $userId = $_SESSION['user']['id'];
+        $books = Book::cartBooks($userId);
 
+        $total = 0;
+
+        foreach ($books as &$book) {
+
+            $book['line_total'] =
+                $book['price'] *
+                $book['quantity'];
+
+            $total += $book['line_total'];
+        }
         require __DIR__ . '/../views/web/cart/index.php';
     }
 
     public function add(): void
     {
         $this->startSession();
-        $bookId = (int)($_POST['book_id'] ?? 0);
 
-        if ($bookId > 0 && Book::find($bookId)) {
-            $_SESSION['cart'][$bookId] = ($_SESSION['cart'][$bookId] ?? 0) + 1;
+        $userId = $_SESSION['user']['id'];
+
+        $bookId = (int)$_POST['book_id'];
+
+        $exists = Cart::whereMultiple([
+            'user_id' => $userId,
+            'book_id' => $bookId
+        ]);
+
+        if ($exists) {
+
+            Cart::update(
+                $exists['id'],
+                [
+                    'quantity' => $exists['quantity'] + 1
+                ]
+            );
+
+        } else {
+
+            Cart::create([
+                'user_id' => $userId,
+                'book_id' => $bookId,
+                'quantity' => 1
+            ]);
         }
 
         header('Location: /cart');
         exit;
+
     }
 
     public function remove(): void
     {
         $this->startSession();
-        $bookId = (int)($_POST['book_id'] ?? 0);
-        unset($_SESSION['cart'][$bookId]);
+
+        $userId = $_SESSION['user']['id'];
+
+        $bookId = (int)$_POST['book_id'];
+
+        $cartItem = Cart::whereMultiple([
+            'user_id' => $userId,
+            'book_id' => $bookId
+        ]);
+
+        if ($cartItem) {
+            Cart::delete($cartItem['id']);
+        }
 
         header('Location: /cart');
         exit;
@@ -70,22 +120,44 @@ class CartController
     public function checkout(): void
     {
         $this->startSession();
-        [$books, $total] = $this->cartBooks();
 
-        if (!empty($books)) {
-            $_SESSION['orders'][] = [
-                'code' => 'BK-' . date('Ymd-His'),
-                'created_at' => date('Y-m-d H:i:s'),
-                'items' => $books,
-                'total' => $total,
-                'status' => 'در حال بررسی',
-                'tracking' => 'سفارش ثبت شد و منتظر تماس فروشنده است.',
-            ];
+        $userId = $_SESSION['user']['id'];
+
+        $books = Book::cartBooks($userId);
+
+        if (empty($books)) {
+            header('Location: /cart');
+            exit;
         }
 
-        $_SESSION['cart'] = [];
-        $_SESSION['cart_success'] = 'خرید شما با موفقیت ثبت شد و از بخش حساب کاربری قابل پیگیری است.';
+        $total = 0;
 
+        foreach ($books as $book) {
+
+            $total +=
+                $book['price']
+                * $book['quantity'];
+        }
+
+        $orderId = Order::insertGetId([
+            'user_id' => $userId,
+            'total_price' => $total,
+            'status' => 'pending'
+        ]);
+
+        foreach ($books as $book) {
+
+            OrderItem::create([
+                'order_id' => $orderId,
+                'book_id' => $book['id'],
+                'price' => $book['price']
+            ]);
+        }
+
+        Cart::deleteWhere(
+            'user_id',
+            $userId
+        );
         header('Location: /cart');
         exit;
     }

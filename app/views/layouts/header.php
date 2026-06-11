@@ -1,13 +1,16 @@
 <?php
 $activePage = $activePage ?? '';
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
 $currentUser = $_SESSION['user'] ?? null;
-$cartCount = array_sum($_SESSION['cart'] ?? []);
 
+$cartCount = 0;
+
+if ($currentUser) {
+    require_once __DIR__ . '/../../models/Cart.php';
+
+    $cartCount = \models\Cart::countForUser(
+            $currentUser['id']
+    );
+}
 require_once __DIR__ . '/../../../config/app.php';
 ?>
 
