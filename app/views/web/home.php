@@ -24,16 +24,16 @@
             </div>
             <div class="mt-10 grid max-w-xl grid-cols-3 gap-3">
                 <div class="paper-card rounded-3xl p-4 text-center">
-                    <strong class="block text-2xl text-coffee">۱۲۸۰+</strong
+                    <strong class="block text-2xl text-coffee"><?= number_format($bookCount) ?></strong
                     ><span class="text-xs text-coffee/70">کتاب فعال</span>
                 </div>
                 <div class="paper-card rounded-3xl p-4 text-center">
-                    <strong class="block text-2xl text-coffee">۳۴۰+</strong
-                    ><span class="text-xs text-coffee/70">خرید موفق</span>
+                    <strong class="block text-2xl text-coffee"><?= number_format($orderCount) ?></strong
+                    ><span class="text-xs text-coffee/70">سفارش ثبت‌شده</span>
                 </div>
                 <div class="paper-card rounded-3xl p-4 text-center">
-                    <strong class="block text-2xl text-coffee">۴.۸</strong
-                    ><span class="text-xs text-coffee/70">رضایت کاربران</span>
+                    <strong class="block text-2xl text-coffee"><?= number_format($categoryCount) ?></strong
+                    ><span class="text-xs text-coffee/70">دسته‌بندی</span>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
         <div class="grid gap-6 md:grid-cols-3">
             <?php foreach ($books as $book):
                 $status = '';
-                $sell_type = 'فروش نقدی';
+                $sell_type = 'فروش';
                 switch ($book['status']) {
                     case 'new':
                         $status = 'در حد نو';
@@ -150,7 +150,7 @@
 
                 ?>
 
-                <a class="reveal paper-card rounded-3xl p-6" href="books?category_id=<?= (int)$category['id']?>"
+                <a class="reveal paper-card rounded-3xl p-6" href="/books?category_id=<?= (int)$category['id']?>"
                 ><i class="ti <?= $icon ?> text-4xl text-coffee"></i>
                     <h3 class="mt-5 font-black"><?= $category['title'] ?></h3>
                 </a

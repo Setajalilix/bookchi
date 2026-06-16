@@ -72,6 +72,10 @@ body::before {
   background-image: url("data:image/svg+xml,%3Csvg width='90' height='90' viewBox='0 0 90 90' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%237c4a2d' stroke-opacity='.07' stroke-width='1'%3E%3Cpath d='M0 22h90M0 68h90M22 0v90M68 0v90'/%3E%3Ccircle cx='45' cy='45' r='18'/%3E%3C/g%3E%3C/svg%3E");
 }
 
+body {
+  overflow-x: hidden;
+}
+
 a {
   transition:
     color 0.2s ease,

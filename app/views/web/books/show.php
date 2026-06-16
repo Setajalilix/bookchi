@@ -14,10 +14,10 @@ $statusText = match ($book['status'] ?? '') {
     <section class="mt-6 grid gap-8 lg:grid-cols-[460px_1fr]">
         <div class="reveal paper-card rounded-[2.6rem] p-4 md:p-5">
             <div class="relative overflow-hidden rounded-[2rem]">
-                <img class="h-[560px] w-full object-cover" src="<?= htmlspecialchars($book['cover'] ?? '/assets/book-placeholder.svg') ?>" alt="<?= htmlspecialchars($book['title']) ?>">
+                <img class="h-64 w-full object-cover sm:h-80 md:h-[560px]" src="<?= htmlspecialchars($book['cover'] ?? '/assets/book-placeholder.svg') ?>" alt="<?= htmlspecialchars($book['title']) ?>">
                 <div class="absolute inset-x-4 bottom-4 rounded-3xl bg-cream/90 p-4 shadow-xl backdrop-blur">
                     <div class="flex items-center justify-between gap-3">
-                        <span class="badge badge-amber">فروش نقدی</span>
+                        <span class="badge badge-amber">فروش</span>
                         <strong class="text-xl text-coffee-dark"><?= number_format((int)($book['price'] ?? 0)) ?> تومان</strong>
                     </div>
                 </div>
@@ -49,7 +49,7 @@ $statusText = match ($book['status'] ?? '') {
 
             <div class="mt-7 rounded-3xl bg-white/60 p-5">
                 <h2 class="text-xl font-black text-coffee-dark">توضیحات فروشنده</h2>
-                <p class="mt-3 leading-9 text-coffee/75"><?= nl2br(htmlspecialchars($book['description'] ?? 'توضیحی ثبت نشده است.')) ?></p>
+                <p class="mt-3 leading-9 text-coffee/75"><?= nl2br(htmlspecialchars($book['description'] ?? 'فروشنده توضیحی برای این کتاب ننوشته است.')) ?></p>
             </div>
 
             <div class="mt-8 grid gap-3 sm:grid-cols-[1fr_auto]">

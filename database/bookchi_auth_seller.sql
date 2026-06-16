@@ -1,0 +1,3 @@
+ALTER TABLE users ADD COLUMN password VARCHAR(255) NULL;
+
+ALTER TABLE order_items ADD COLUMN status VARCHAR(50) NOT NULL DEFAULT 'pending';

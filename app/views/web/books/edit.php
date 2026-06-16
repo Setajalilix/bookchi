@@ -9,7 +9,7 @@
         >کتابت را برای فروش ویرایش کن</span
         >
         <h1 class="mt-2 text-4xl font-black text-coffee-dark">
-            ویرایش کتاب توسط کاربر
+            ویرایش آگهی کتاب
         </h1>
         <p class="mt-4 max-w-3xl leading-8 text-coffee/70">
             اطلاعات کتابت را کامل وارد کن تا خریدارها با خیال راحت وضعیت، قیمت و
@@ -90,7 +90,7 @@
             </label>
             <input type="hidden" name="sell_type" value="cash">
             <div class="mt-5 rounded-2xl bg-white/60 p-4 font-bold text-coffee-dark">
-                <i class="ti ti-cash"></i> نوع آگهی: فروش نقدی
+                <i class="ti ti-cash"></i> نوع آگهی: فروش
             </div>
             <button class="btn-primary mt-6 w-full px-6 py-4" type="submit">
                 ویرایش کتاب

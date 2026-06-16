@@ -5,8 +5,8 @@
         <span class="text-sm font-black text-caramel">فروشگاه کتابچی</span>
         <div class="mt-2 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-                <h1 class="text-4xl font-black text-coffee-dark">کتاب‌های ثبت‌شده کاربران</h1>
-                <p class="mt-4 leading-8 text-coffee/70">این لیست از دیتابیس خوانده می‌شود و دیگر نمونه ثابت نیست.</p>
+                <h1 class="text-4xl font-black text-coffee-dark">کتاب‌های دست‌دوم</h1>
+                <p class="mt-4 leading-8 text-coffee/70">کتاب‌هایی که اعضای کتابچی برای فروش گذاشته‌اند.</p>
             </div>
             <a href="/books/create" class="btn-primary px-6 py-3">ثبت آگهی جدید</a>
         </div>
@@ -15,8 +15,8 @@
     <section class="mt-8 grid gap-5 md:grid-cols-3 lg:grid-cols-4">
         <?php if (empty($books)): ?>
             <div class="paper-card rounded-[2rem] p-6 md:col-span-2">
-                <h2 class="text-xl font-black">هنوز کتابی ثبت نشده است.</h2>
-                <p class="mt-3 leading-8 text-coffee/65">اولین کتاب فروشگاه را شما ثبت کنید.</p>
+                <h2 class="text-xl font-black">فعلاً کتابی موجود نیست</h2>
+                <p class="mt-3 leading-8 text-coffee/65">اولین کتاب را خودتان بگذارید تا دیگران هم بخرند.</p>
             </div>
         <?php endif; ?>
 

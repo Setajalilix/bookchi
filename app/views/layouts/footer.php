@@ -6,7 +6,7 @@
                 <strong class="text-2xl">کتابچی</strong>
             </div>
             <p class="mt-4 max-w-xl leading-8 text-cream/75">
-                کتابچی محلی گرم برای خرید و فروش کتاب‌های تمیز و خواندنی است؛ از رمان محبوب تا کتاب دانشگاهی کمیاب.
+                بازار آنلاین کتاب دست‌دوم؛ از رمان محبوب تا کتاب دانشگاهی، با خرید و فروش ساده.
             </p>
         </div>
         <div>
@@ -19,9 +19,9 @@
             </div>
         </div>
         <div>
-            <h3 class="font-black">طراحی شده توسط</h3>
+            <h3 class="font-black">دربارهٔ کتابچی</h3>
             <div class="mt-4 grid gap-3 text-cream/75">
-                <span>تیم دایاد کد</span>
+                <span>خرید و فروش کتاب دست‌دوم</span>
             </div>
         </div>
     </div>

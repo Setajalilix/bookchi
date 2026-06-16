@@ -21,21 +21,27 @@ class CartController
         }
     }
 
-    private function cartBooks(): array
+    private function requireLogin(): array
     {
         $this->startSession();
-        $cart = $_SESSION['cart'] ?? [];
-        $books = [];
+
+        if (empty($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+
+        return $_SESSION['user'];
+    }
+
+    private function cartSummary(int $userId): array
+    {
+        $books = Book::cartBooks($userId);
         $total = 0;
 
-        foreach ($cart as $bookId => $quantity) {
-            $book = Book::find((int)$bookId);
-            if ($book) {
-                $book['quantity'] = (int)$quantity;
-                $book['line_total'] = (int)$book['price'] * (int)$quantity;
-                $total += $book['line_total'];
-                $books[] = $book;
-            }
+        foreach ($books as $i => $book) {
+            $lineTotal = (int)$book['price'] * (int)$book['quantity'];
+            $books[$i]['line_total'] = $lineTotal;
+            $total += $lineTotal;
         }
 
         return [$books, $total];
@@ -43,74 +49,39 @@ class CartController
 
     public function index(): void
     {
-        $this->startSession();
-        $userId = $_SESSION['user']['id'];
-        $books = Book::cartBooks($userId);
-
-        $total = 0;
-
-        foreach ($books as &$book) {
-
-            $book['line_total'] =
-                $book['price'] *
-                $book['quantity'];
-
-            $total += $book['line_total'];
-        }
+        $user = $this->requireLogin();
+        [$books, $total] = $this->cartSummary((int)$user['id']);
         require __DIR__ . '/../views/web/cart/index.php';
     }
 
     public function add(): void
     {
-        $this->startSession();
-
-        $userId = $_SESSION['user']['id'];
-
+        $user = $this->requireLogin();
+        $userId = (int)$user['id'];
         $bookId = (int)$_POST['book_id'];
+        $item = Cart::findItem($userId, $bookId);
 
-        $exists = Cart::whereMultiple([
-            'user_id' => $userId,
-            'book_id' => $bookId
-        ]);
-
-        if ($exists) {
-
-            Cart::update(
-                $exists['id'],
-                [
-                    'quantity' => $exists['quantity'] + 1
-                ]
-            );
-
+        if ($item) {
+            Cart::update($item['id'], ['quantity' => $item['quantity'] + 1]);
         } else {
-
             Cart::create([
                 'user_id' => $userId,
                 'book_id' => $bookId,
-                'quantity' => 1
+                'quantity' => 1,
             ]);
         }
 
         header('Location: /cart');
         exit;
-
     }
 
     public function remove(): void
     {
-        $this->startSession();
+        $user = $this->requireLogin();
+        $item = Cart::findItem((int)$user['id'], (int)$_POST['book_id']);
 
-        $userId = $_SESSION['user']['id'];
-
-        $bookId = (int)$_POST['book_id'];
-
-        $cartItem = Cart::whereMultiple([
-            'user_id' => $userId,
-            'book_id' => $bookId
-        ]);
-
-        if ($cartItem) {
-            Cart::delete($cartItem['id']);
+        if ($item) {
+            Cart::delete($item['id']);
         }
 
         header('Location: /cart');
@@ -119,46 +90,33 @@ class CartController
 
     public function checkout(): void
     {
-        $this->startSession();
-
-        $userId = $_SESSION['user']['id'];
-
-        $books = Book::cartBooks($userId);
+        $user = $this->requireLogin();
+        $userId = (int)$user['id'];
+        [$books, $total] = $this->cartSummary($userId);
 
         if (empty($books)) {
             header('Location: /cart');
             exit;
         }
 
-        $total = 0;
-
-        foreach ($books as $book) {
-
-            $total +=
-                $book['price']
-                * $book['quantity'];
-        }
-
         $orderId = Order::insertGetId([
             'user_id' => $userId,
             'total_price' => $total,
-            'status' => 'pending'
+            'status' => 'pending',
+            'created_at' => date('Y-m-d H:i:s'),
         ]);
 
         foreach ($books as $book) {
-
             OrderItem::create([
                 'order_id' => $orderId,
                 'book_id' => $book['id'],
-                'price' => $book['price']
+                'price' => $book['price'],
+                'quantity' => $book['quantity'],
             ]);
         }
 
-        Cart::deleteWhere(
-            'user_id',
-            $userId
-        );
-        header('Location: /cart');
+        Cart::deleteWhere('user_id', $userId);
+        header('Location: /profile');
         exit;
     }
 }

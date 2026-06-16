@@ -43,20 +43,13 @@ class Book extends BaseModel
     public static function cartBooks(int $userId): array
     {
         $pdo = static::db();
-
-        $query = $pdo->prepare("
-        SELECT
-            books.*,
-            carts.quantity
-        FROM carts
-        INNER JOIN books
-            ON books.id = carts.book_id
-        WHERE carts.user_id = :user_id
-    ");
-
-        $query->execute([
-            'user_id' => $userId
-        ]);
+        $query = $pdo->prepare('
+            SELECT books.*, carts.quantity
+            FROM carts
+            INNER JOIN books ON books.id = carts.book_id
+            WHERE carts.user_id = :user_id
+        ');
+        $query->execute(['user_id' => $userId]);
 
         return $query->fetchAll();
     }

@@ -6,6 +6,8 @@ $router->get('/', 'HomeController@index');
 $router->get('/home', 'HomeController@index');
 $router->get('/profile', 'DashboardController@index');
 $router->get('/dashboard', 'DashboardController@index');
+$router->get('/profile/edit', 'ProfileController@edit');
+$router->post('/profile/update', 'ProfileController@update');
 
 $router->get('/login', 'AuthController@login');
 $router->post('/login', 'AuthController@authenticate');
@@ -24,3 +26,5 @@ $router->get('/cart', 'CartController@index');
 $router->post('/cart/add', 'CartController@add');
 $router->post('/cart/remove', 'CartController@remove');
 $router->post('/checkout', 'CartController@checkout');
+
+$router->post('/orders/status', 'OrderController@updateStatus');

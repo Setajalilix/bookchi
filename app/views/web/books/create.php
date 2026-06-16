@@ -9,7 +9,7 @@
         >کتابت را برای فروش ثبت کن</span
         >
         <h1 class="mt-2 text-4xl font-black text-coffee-dark">
-            ثبت کتاب توسط کاربر
+            ثبت کتاب برای فروش
         </h1>
         <p class="mt-4 max-w-3xl leading-8 text-coffee/70">
             اطلاعات کتابت را کامل وارد کن تا خریدارها با خیال راحت وضعیت، قیمت و
@@ -30,7 +30,7 @@
                     <input class="input-field mt-2" placeholder="نام نویسنده" name="author"/></label
                 ><label class="field-label"
                 >دسته‌بندی<select class="select-field mt-2" name="category_id">
-                        <option>انتخاب کنید...</option>
+                        <option>دسته را انتخاب کنید</option>
                         <?php foreach ($categories as $category) { ?>
                             <option value="<?= $category['id'] ?>"><?= $category['title'] ?></option>
                         <?php } ?>
@@ -63,7 +63,7 @@
             </label>
             <input type="hidden" name="sell_type" value="cash">
             <div class="mt-5 rounded-2xl bg-white/60 p-4 font-bold text-coffee-dark">
-                <i class="ti ti-cash"></i> نوع آگهی: فروش نقدی
+                <i class="ti ti-cash"></i> نوع آگهی: فروش
             </div>
             <button class="btn-primary mt-6 w-full px-6 py-4" type="submit">
                 ثبت کتاب
