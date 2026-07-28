@@ -9,6 +9,8 @@ use models\Order;
 require_once __DIR__ . '/../models/Book.php';
 require_once __DIR__ . '/../models/Cart.php';
 require_once __DIR__ . '/../models/Order.php';
+require_once __DIR__ . '/../models/User.php';
+require_once __DIR__ . '/../../config/app.php';
 
 class DashboardController
 {
@@ -29,6 +31,11 @@ class DashboardController
     public function index(): void
     {
         $user = $this->currentUser();
+
+        if (User::isAdmin($user)) {
+            header('Location: /admin');
+            exit;
+        }
         $userId = (int)$user['id'];
         $books = Book::forUser($userId, 50);
         $orders = Order::forUser($userId);

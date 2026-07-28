@@ -132,21 +132,28 @@
                 </article>
             <?php endforeach; ?>
         </div>
+        <?php if (!empty($guestPreview)): ?>
+            <div class="reveal mt-8 rounded-[2rem] border border-caramel/30 bg-caramel/10 p-6 text-center">
+                <p class="leading-8 text-coffee/80">
+                    برای دیدن همه کتاب‌ها
+                    <a href="/login" class="font-black text-coffee underline">وارد حساب کاربری</a>
+                    شوید.
+                </p>
+            </div>
+        <?php endif; ?>
     </section>
     <section class="mx-auto max-w-7xl px-4 py-12 lg:px-8">
         <div class="grid gap-5 md:grid-cols-4">
             <?php
             $icons = [
-                    'ti-book-2',
-                    'ti-school',
-                    'ti-brain',
                     'ti-heart',
-                    'ti-brand-4chan',
+                    'ti-brain',
+                    'ti-school',
+                    'ti-book-2',
             ];
 
-            shuffle($icons);
             foreach ($categories as $index => $category):
-                $icon = $icons[$index % count($icons)];
+                $icon = $icons[$index];
 
                 ?>
 

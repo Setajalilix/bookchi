@@ -9,12 +9,24 @@ use models\Order;
 require_once __DIR__ . '/../models/Book.php';
 require_once __DIR__ . '/../models/Category.php';
 require_once __DIR__ . '/../models/Order.php';
+require_once __DIR__ . '/../../config/app.php';
 
 class HomeController
 {
+    private function currentUser(): ?array
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        return $_SESSION['user'] ?? null;
+    }
+
     public function index(): void
     {
-        $books = Book::latest(6);
+        $user = $this->currentUser();
+        $books = Book::latest($user ? 6 : GUEST_BOOK_LIMIT);
+        $guestPreview = !$user;
         $categories = Category::latest(4);
         $popularBook = Book::latest(1)[0] ?? null;
         $bookCount = Book::count();

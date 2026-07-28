@@ -26,8 +26,7 @@ class Router
         if (!$action) {
             die("404 Not Found");
         }
-
-        [$controller, $function] = explode('@', $action);
+        [$controller, $function] = explode('-', $action);
 
         $controllerClass = "controllers\\$controller";
 

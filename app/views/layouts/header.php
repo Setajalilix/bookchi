@@ -12,6 +12,8 @@ if ($currentUser) {
     $cartCount = \models\Cart::countForUser((int)$currentUser['id']);
 }
 require_once __DIR__ . '/../../../config/app.php';
+require_once __DIR__ . '/../../models/User.php';
+$isAdminUser = \models\User::isAdmin($currentUser);
 ?>
 
 <!doctype html>
@@ -45,7 +47,11 @@ require_once __DIR__ . '/../../../config/app.php';
             <a class="nav-link <?= $activePage === 'shop' ? 'active' : '' ?>" href="/books">فروشگاه</a>
             <a class="nav-link <?= $activePage === 'sell' ? 'active' : '' ?>" href="/books/create">ثبت کتاب</a>
             <a class="nav-link <?= $activePage === 'cart' ? 'active' : '' ?>" href="/cart">سبد خرید <?= $cartCount > 0 ? '(' . $cartCount . ')' : '' ?></a>
-            <a class="nav-link <?= in_array($activePage, ['profile', 'admin']) ? 'active' : '' ?>" href="/profile">حساب کاربری</a>
+            <?php if ($isAdminUser): ?>
+                <a class="nav-link <?= $activePage === 'admin' ? 'active' : '' ?>" href="/admin">مدیریت</a>
+            <?php else: ?>
+                <a class="nav-link <?= $activePage === 'profile' ? 'active' : '' ?>" href="/profile">حساب کاربری</a>
+            <?php endif; ?>
         </div>
 
         <div class="hidden shrink-0 items-center gap-3 md:flex">
@@ -70,7 +76,11 @@ require_once __DIR__ . '/../../../config/app.php';
         <a href="/books" class="block px-4 py-3">فروشگاه</a>
         <a href="/books/create" class="block px-4 py-3">ثبت کتاب</a>
         <a href="/cart" class="block px-4 py-3">سبد خرید <?= $cartCount > 0 ? '(' . $cartCount . ')' : '' ?></a>
-        <a href="/profile" class="block px-4 py-3">حساب کاربری</a>
+        <?php if ($isAdminUser): ?>
+            <a href="/admin" class="block px-4 py-3">مدیریت</a>
+        <?php else: ?>
+            <a href="/profile" class="block px-4 py-3">حساب کاربری</a>
+        <?php endif; ?>
         <?php if ($currentUser): ?>
             <form method="post" action="/logout" class="px-4 py-2">
                 <button class="btn-soft w-full px-5 py-3" type="submit">خروج</button>

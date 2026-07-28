@@ -27,6 +27,31 @@ class Book extends BaseModel
         return $query->fetchAll();
     }
 
+    public static function allWithDetails(): array
+    {
+        $pdo = static::db();
+        $query = $pdo->query('
+            SELECT books.*, users.name AS owner_name, users.phone AS owner_phone, categories.title AS category_title
+            FROM books
+            LEFT JOIN users ON users.id = books.owner_id
+            LEFT JOIN categories ON categories.id = books.category_id
+            ORDER BY books.id DESC
+        ');
+
+        return $query->fetchAll();
+    }
+
+    public static function isInGuestPreview(int $bookId, int $limit): bool
+    {
+        foreach (self::latest($limit) as $book) {
+            if ((int)$book['id'] === $bookId) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static function belongsToUser(int $bookId, int $userId): bool
     {
 

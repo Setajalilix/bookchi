@@ -3,6 +3,7 @@
 namespace models;
 
 require_once __DIR__ . '/../models/BaseModel.php';
+require_once __DIR__ . '/../../config/app.php';
 
 class User extends BaseModel
 {
@@ -15,5 +16,18 @@ class User extends BaseModel
         $query->execute(['phone' => $phone]);
 
         return $query->fetch();
+    }
+
+    public static function isAdmin(?array $user): bool
+    {
+        return $user !== null && (int)($user['role'] ?? ROLE_USER) === ROLE_ADMIN;
+    }
+
+    public static function allOrdered(): array
+    {
+        $pdo = static::db();
+        $query = $pdo->query('SELECT id, role, name, phone, address, postal_code, created_at FROM users ORDER BY id DESC');
+
+        return $query->fetchAll();
     }
 }

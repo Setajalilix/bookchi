@@ -28,3 +28,14 @@ $router->post('/cart/remove', 'CartController@remove');
 $router->post('/checkout', 'CartController@checkout');
 
 $router->post('/orders/status', 'OrderController@updateStatus');
+
+$router->get('/admin', 'AdminController@index');
+$router->get('/admin/users', 'AdminController@users');
+$router->get('/admin/categories', 'AdminController@categories');
+$router->post('/admin/categories', 'AdminController@storeCategory');
+$router->post('/admin/categories/update', 'AdminController@updateCategory');
+$router->post('/admin/categories/delete', 'AdminController@deleteCategory');
+$router->get('/admin/books', 'AdminController@books');
+$router->get('/admin/books/edit', 'AdminController@editBook');
+$router->post('/admin/books/update', 'AdminController@updateBook');
+$router->post('/admin/books/delete', 'AdminController@deleteBook');

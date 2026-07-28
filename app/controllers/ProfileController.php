@@ -5,6 +5,7 @@ namespace controllers;
 use models\User;
 
 require_once __DIR__ . '/../models/User.php';
+require_once __DIR__ . '/../../config/app.php';
 
 class ProfileController
 {
@@ -25,6 +26,11 @@ class ProfileController
     public function edit(): void
     {
         $user = $this->currentUser();
+
+        if (User::isAdmin($user)) {
+            header('Location: /admin');
+            exit;
+        }
         $dbUser = User::find((int)$user['id']);
         $error = $_SESSION['profile_error'] ?? null;
         unset($_SESSION['profile_error']);
@@ -34,6 +40,11 @@ class ProfileController
     public function update(): void
     {
         $user = $this->currentUser();
+
+        if (User::isAdmin($user)) {
+            header('Location: /admin');
+            exit;
+        }
         $name = trim($_POST['name'] ?? '');
         $phone = trim($_POST['phone'] ?? '');
         $address = trim($_POST['address'] ?? '');

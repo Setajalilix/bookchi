@@ -7,6 +7,7 @@ use models\Category;
 
 require_once __DIR__ . '/../models/Category.php';
 require_once __DIR__ . '/../models/Book.php';
+require_once __DIR__ . '/../../config/app.php';
 
 class BookController
 {
@@ -37,7 +38,15 @@ class BookController
 
     public function index(): void
     {
-        $books = Book::latest(30);
+        $user = $this->currentUser();
+        $guestPreview = !$user;
+
+        if ($user) {
+            $books = Book::latest(max(Book::count(), 1));
+        } else {
+            $books = Book::latest(GUEST_BOOK_LIMIT);
+        }
+
         require __DIR__ . '/../views/web/books/index.php';
     }
 
@@ -52,6 +61,14 @@ class BookController
 
         if (!$book) {
             die('404 Not Found');
+        }
+
+        $user = $this->currentUser();
+
+        if (!$user && !Book::isInGuestPreview($id, GUEST_BOOK_LIMIT)) {
+            $_SESSION['auth_error'] = 'برای دیدن همه کتاب‌ها وارد حساب کاربری شوید.';
+            header('Location: /login');
+            exit;
         }
 
         require __DIR__ . '/../views/web/books/show.php';

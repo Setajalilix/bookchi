@@ -5,6 +5,7 @@ namespace controllers;
 use models\User;
 
 require_once __DIR__ . '/../models/User.php';
+require_once __DIR__ . '/../../config/app.php';
 
 class AuthController
 {
@@ -41,6 +42,7 @@ class AuthController
 
         if (!$user) {
             $created = User::create([
+                'role' => ROLE_USER,
                 'name' => $phone,
                 'phone' => $phone,
                 'password' => password_hash($password, PASSWORD_DEFAULT),
@@ -64,11 +66,13 @@ class AuthController
             'id' => (int)$user['id'],
             'name' => $user['name'] ?? $phone,
             'phone' => $user['phone'] ?? $phone,
+            'role' => (int)($user['role'] ?? ROLE_USER),
         ];
 
         session_regenerate_id(true);
 
-        header('Location: /profile');
+        $redirect = User::isAdmin($_SESSION['user']) ? '/admin' : '/profile';
+        header('Location: ' . $redirect);
         exit;
     }
 

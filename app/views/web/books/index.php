@@ -12,6 +12,16 @@
         </div>
     </section>
 
+    <?php if (!empty($guestPreview)): ?>
+        <section class="reveal mt-8 rounded-[2rem] border border-caramel/30 bg-caramel/10 p-6">
+            <p class="leading-8 text-coffee/80">
+                برای دیدن همه کتاب‌ها
+                <a href="/login" class="font-black text-coffee underline">وارد حساب کاربری</a>
+                شوید.
+            </p>
+        </section>
+    <?php endif; ?>
+
     <section class="mt-8 grid gap-5 md:grid-cols-3 lg:grid-cols-4">
         <?php if (empty($books)): ?>
             <div class="paper-card rounded-[2rem] p-6 md:col-span-2">
